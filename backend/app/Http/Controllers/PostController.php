@@ -25,13 +25,9 @@ class PostController extends Controller
         $post->title = $request->title;
         $post->content = $request->content;
 
-
-        
         // データベースエラー時にファイル削除を行うため
         // トランザクションを利用する
         DB::beginTransaction();
-
-
         try {
             Auth::user()->posts()->save($post);
             DB::commit();

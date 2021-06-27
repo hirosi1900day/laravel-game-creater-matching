@@ -6,11 +6,10 @@
     <div class="navbar__menu">
       <div class="navbar__item">
         <RouterLink class="navbar__brand" to="/post/create">
-          Home
+          投稿
         </RouterLink>
       </div>
       <span class="navbar__item">
-    
       </span>
     </div>
   

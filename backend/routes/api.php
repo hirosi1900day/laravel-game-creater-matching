@@ -21,5 +21,7 @@ Route::get('/user', function () {
     return Auth::user();
 });
 
-// 写真投稿
+// 投稿作成
 Route::post('/post', 'PostController@create')->name('post.create');
+// 投稿一覧
+Route::get('/post', 'PostController@index')->name('post.index');

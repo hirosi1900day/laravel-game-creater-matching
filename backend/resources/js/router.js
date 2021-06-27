@@ -3,8 +3,11 @@ import VueRouter from 'vue-router'
 
 // ページコンポーネントをインポートする
 import Photo from './pages/Photo.vue'
-import Postform from './pages/Postform.vue'
+import PostForm from './pages/Postform.vue'
 import Text from './pages/Text.vue'
+//エラーハンドリング
+import SystemError from './pages/errors/System.vue'
+
 
 // VueRouterプラグインを使用する
 // これによって<RouterView />コンポーネントなどを使うことができる
@@ -12,13 +15,20 @@ Vue.use(VueRouter)
 
 // パスとコンポーネントのマッピング
 const routes = [
+  { path: '/401', redirect: to => {
+    return window.location.href = "/login"
+  }},
+  {
+    path: '/500',
+    component: SystemError
+  },
   {
     path: '/post/index',
     component: Photo
   },
   {
     path: '/post/create',
-    component: Postform
+    component: PostForm
   },
   {
     path: '/text',

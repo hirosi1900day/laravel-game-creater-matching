@@ -17,7 +17,6 @@ const actions = {
   async currentUser (context) {
     const response = await axios.get('/api/user')
     const user = response.data || null
-    console.log(user)
     context.commit('setUser', user)
   }
 }

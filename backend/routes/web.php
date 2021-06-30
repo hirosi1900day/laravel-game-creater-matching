@@ -12,6 +12,7 @@
 */
 
 
+
 //会員登録
 Route::get('signup', 'Auth\RegisterController@showRegistrationForm')->name('register');
 Route::post('signup', 'Auth\RegisterController@register')->name('signup');
@@ -23,17 +24,4 @@ Route::get('logout', 'Auth\LoginController@logout')->name('logout');
 
 Route::get('/{any?}', function () {
     return view('pages.index');
-});
-Route::get('/post/{any?}', function () {
-    return view('pages.index');
-});
-// Route::get('/chat/{any?}', function () {
-//     return view('pages.index');
-// });
-// Route::get('/favorite/{any?}', function () {
-//     return view('pages.index');
-// });
-// Route::get('/setting/{any?}', function () {
-//     return view('pages.index');
-// });
-
+})->where('any', '.+');

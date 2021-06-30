@@ -3,7 +3,7 @@
     <h2 class="title">投稿</h2>
     <form class="form" @submit.prevent="submit">
       <input class="form__item" type="text" v-model="postData.title">
-      <input class="form__item" type="text" v-model="postData.content"> 
+      <input class="form__item" type="text" v-model="postData.content">
       <div v-if="errors" class="errors">
         <ul v-if="errors.title">
           <li v-for="msg in errors.title" :key="msg">{{ msg }}</li>
@@ -71,6 +71,7 @@ export default {
         this.$store.commit('error/setCode', response.status)
       }
       this.reset()
+      this.$router.push({name: 'PostIndex'})
       console.log("確認")
     }
   }

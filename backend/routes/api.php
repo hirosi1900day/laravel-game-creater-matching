@@ -13,10 +13,6 @@ use Illuminate\Http\Request;
 |
 */
 
-// Route::middleware('auth:api')->get('/user', function (Request $request) {
-//     return $request->user();
-// });
-
 Route::get('/user', function () {
     return Auth::user();
 });
@@ -24,4 +20,6 @@ Route::get('/user', function () {
 // 投稿作成
 Route::post('/post', 'PostController@create')->name('post.create');
 // 投稿一覧
-Route::get('/post', 'PostController@index')->name('post.index');
+Route::get('/posts', 'PostController@index')->name('post.index');
+//userの詳細情報を取得する
+Route::get('/users/{user}', 'UserController@show')->name('user.show');

@@ -26,6 +26,6 @@
         "vuex": "^3.6.2"
     },
     "rules": {
-        "no-console": 0 
+        "no-console": 0
     }
 }

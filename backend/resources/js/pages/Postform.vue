@@ -43,20 +43,6 @@ export default {
     })
   },
   methods: {
-    checkForm: function (e) {
-      if (this.postData.title && this.postData.content) {
-        return true;
-      }
-      this.errors = [];
-
-      if (this.postData.title == "") {
-        this.errors.push('タイトルが必要です');
-      }
-      if (this.postData.content == "") {
-        this.errors.push('内容を入力してください');
-      }
-      e.preventDefault();
-    },
     reset () {
       this.postData.title = ""
       this.postData.content = ""

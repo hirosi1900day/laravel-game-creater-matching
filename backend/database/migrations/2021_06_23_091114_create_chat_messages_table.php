@@ -17,10 +17,10 @@ class CreateChatMessagesTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('user_id');
             $table->string('message')->default('');
-            $table->unsignedBigInteger('chatroom_id');
+            $table->unsignedBigInteger('chat_room_id');
             $table->timestamps();
 
-            $table->foreign('chatroom_id')->references('id')->on('chat_rooms')->onDelete('cascade');
+            $table->foreign('chat_room_id')->references('id')->on('chat_rooms')->onDelete('cascade');
         });
     }
 

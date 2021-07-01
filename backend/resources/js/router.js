@@ -6,6 +6,7 @@ import PostList from './pages/PostList.vue'
 import PostForm from './pages/PostForm.vue'
 import Text from './pages/Text.vue'
 import UserDetail from './pages/UserDetail.vue'
+import ChatRoom from './pages/ChatRoom.vue'
 //エラーハンドリング
 import SystemError from './pages/errors/System.vue'
 
@@ -25,6 +26,10 @@ const routes = [
     component: SystemError
   },
   {
+    path: '/',
+    redirect: '/post/index'
+  },
+  {
     path: '/post/index',
     component: PostList,
     name: 'PostIndex',
@@ -37,12 +42,6 @@ const routes = [
     path: '/post/create',
     component: PostForm,
     name: 'PostForm',
-    beforeEnter: (to, from, next) => {
-      if($user) {
-        next()
-      }
-      next('/post/index')
-    }
   },
   {
     //userの詳細画面

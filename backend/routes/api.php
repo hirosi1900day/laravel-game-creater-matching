@@ -26,4 +26,4 @@ Route::get('/users/{user}', 'UserController@show')->name('user.show');
 //chatRoom情報の取得
 Route::get('/chats/users/{user}', 'ChatRoomController@show')->name('chat.show');
 //chatMessageを保存する
-Route::post('/chats/users/{user}', 'ChatRoomController@show')->name('chat.show');
+Route::post('/chats/users', 'ChatRoomController@store')->name('chat.store');

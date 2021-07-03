@@ -7,6 +7,7 @@ import PostForm from './pages/PostForm.vue'
 import Text from './pages/Text.vue'
 import UserDetail from './pages/UserDetail.vue'
 import ChatRoom from './pages/ChatRoom.vue'
+import Store from './store'
 //エラーハンドリング
 import SystemError from './pages/errors/System.vue'
 
@@ -25,6 +26,9 @@ const routes = [
     path: '/500',
     component: SystemError
   },
+  { path: '/signIn', redirect: to => {
+    return window.location.href = "/login"
+  }},
   {
     path: '/',
     redirect: '/post/index'
@@ -54,7 +58,14 @@ const routes = [
     path: '/chat/:partnerUserId',
     component: ChatRoom,
     name: 'ChatRoom',
-    props: true
+    props: true,
+    beforeEnter: (to, from, next) => {
+     
+      if(!Store.getters['auth/check']){
+        next('/signIn')
+      }
+      next()
+    }
   },
   {
     path: '/text',

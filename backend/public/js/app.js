@@ -2121,15 +2121,23 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      chatMessage: "",
-      messageData: []
+      sendMessageData: {
+        message: "",
+        user_id: -1
+      },
+      getMessageData: []
     };
   },
-  props: ["partnerUserId"],
+  props: ['partnerUserId'],
   methods: {
     fetchChatRoom: function fetchChatRoom() {
       var _this = this;
@@ -2157,8 +2165,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 return _context.abrupt("return", false);
 
               case 7:
-                _this.messageData = response.data;
-                console.log(_this.messageData);
+                _this.getMessageData = response.data;
+                console.log(_this.getMessageData);
 
               case 9:
               case "end":
@@ -2169,8 +2177,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       }))();
     },
     reset: function reset() {
-      this.chatMessage = "";
-      console.log("リセット");
+      this.sendMessageData.message = '';
+      this.sendMessageData.user_id = '';
     },
     submit: function submit() {
       var _this2 = this;
@@ -2181,28 +2189,36 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           while (1) {
             switch (_context2.prev = _context2.next) {
               case 0:
-                console.log("確認");
+                _this2.sendMessageData.user_id = _this2.partnerUserId;
                 _context2.next = 3;
-                return axios.post('/api/post', _this2.postData);
+                return axios.post('/api/chats/users', _this2.sendMessageData);
 
               case 3:
                 response = _context2.sent;
+                _context2.t0 = response.status;
+                _context2.next = _context2.t0 === _util_js__WEBPACK_IMPORTED_MODULE_1__["OK"] ? 7 : _context2.t0 === _util_js__WEBPACK_IMPORTED_MODULE_1__["UNPROCESSABLE_ENTITY"] ? 10 : 12;
+                break;
 
-                if (response.status === UNPROCESSABLE_ENTITY) {
-                  _this2.$store.commit('error/setErrorMessages', response.data.errors);
-                } else {
-                  _this2.$store.commit('error/setCode', response.status);
-                }
+              case 7:
+                _this2.fetchChatRoom();
 
+                console.log("fetchChatRoom実行");
+                return _context2.abrupt("break", 14);
+
+              case 10:
+                _this2.$store.commit('error/setErrorMessages', response.data.errors);
+
+                return _context2.abrupt("break", 14);
+
+              case 12:
+                _this2.$store.commit('error/setCode', response.status);
+
+                return _context2.abrupt("break", 14);
+
+              case 14:
                 _this2.reset();
 
-                _this2.$router.push({
-                  name: 'PostIndex'
-                });
-
-                console.log("確認");
-
-              case 8:
+              case 15:
               case "end":
                 return _context2.stop();
             }
@@ -39788,49 +39804,59 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
-    _c("div", [_vm._v("テスト")]),
-    _vm._v(" "),
-    _c("div", [_vm._v(_vm._s(_vm.partnerUserId))]),
-    _vm._v(" "),
-    _c(
-      "form",
-      {
-        staticClass: "form",
-        on: {
-          submit: function($event) {
-            $event.preventDefault()
-            return _vm.submit.apply(null, arguments)
-          }
-        }
-      },
-      [
-        _c("input", {
-          directives: [
-            {
-              name: "model",
-              rawName: "v-model",
-              value: _vm.chatMessage,
-              expression: "chatMessage"
-            }
-          ],
-          staticClass: "form__item",
-          attrs: { type: "text" },
-          domProps: { value: _vm.chatMessage },
+  return _c(
+    "div",
+    [
+      _c("div", [_vm._v("テスト")]),
+      _vm._v(" "),
+      _c("div", [_vm._v(_vm._s(_vm.partnerUserId))]),
+      _vm._v(" "),
+      _c("h1", [_vm._v("メッセージ")]),
+      _vm._v(" "),
+      _vm._l(_vm.getMessageData.message, function(message) {
+        return _c("div", { key: message.id }, [_vm._v(_vm._s(message.message))])
+      }),
+      _vm._v(" "),
+      _c(
+        "form",
+        {
+          staticClass: "form",
           on: {
-            input: function($event) {
-              if ($event.target.composing) {
-                return
-              }
-              _vm.chatMessage = $event.target.value
+            submit: function($event) {
+              $event.preventDefault()
+              return _vm.submit.apply(null, arguments)
             }
           }
-        }),
-        _vm._v(" "),
-        _vm._m(0)
-      ]
-    )
-  ])
+        },
+        [
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.sendMessageData.message,
+                expression: "sendMessageData.message"
+              }
+            ],
+            staticClass: "form__item",
+            attrs: { type: "text" },
+            domProps: { value: _vm.sendMessageData.message },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.$set(_vm.sendMessageData, "message", $event.target.value)
+              }
+            }
+          }),
+          _vm._v(" "),
+          _vm._m(0)
+        ]
+      )
+    ],
+    2
+  )
 }
 var staticRenderFns = [
   function() {
@@ -57540,9 +57566,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _pages_Text_vue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./pages/Text.vue */ "./resources/js/pages/Text.vue");
 /* harmony import */ var _pages_UserDetail_vue__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./pages/UserDetail.vue */ "./resources/js/pages/UserDetail.vue");
 /* harmony import */ var _pages_ChatRoom_vue__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./pages/ChatRoom.vue */ "./resources/js/pages/ChatRoom.vue");
-/* harmony import */ var _pages_errors_System_vue__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./pages/errors/System.vue */ "./resources/js/pages/errors/System.vue");
+/* harmony import */ var _store__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./store */ "./resources/js/store/index.js");
+/* harmony import */ var _pages_errors_System_vue__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./pages/errors/System.vue */ "./resources/js/pages/errors/System.vue");
 
  // ページコンポーネントをインポートする
+
 
 
 
@@ -57562,7 +57590,12 @@ var routes = [{
   }
 }, {
   path: '/500',
-  component: _pages_errors_System_vue__WEBPACK_IMPORTED_MODULE_7__["default"]
+  component: _pages_errors_System_vue__WEBPACK_IMPORTED_MODULE_8__["default"]
+}, {
+  path: '/signIn',
+  redirect: function redirect(to) {
+    return window.location.href = "/login";
+  }
 }, {
   path: '/',
   redirect: '/post/index'
@@ -57590,7 +57623,14 @@ var routes = [{
   path: '/chat/:partnerUserId',
   component: _pages_ChatRoom_vue__WEBPACK_IMPORTED_MODULE_6__["default"],
   name: 'ChatRoom',
-  props: true
+  props: true,
+  beforeEnter: function beforeEnter(to, from, next) {
+    if (!_store__WEBPACK_IMPORTED_MODULE_7__["default"].getters['auth/check']) {
+      next('/signIn');
+    }
+
+    next();
+  }
 }, {
   path: '/text',
   component: _pages_Text_vue__WEBPACK_IMPORTED_MODULE_4__["default"]

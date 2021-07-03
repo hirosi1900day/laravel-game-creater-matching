@@ -49,7 +49,6 @@ export default {
       console.log("リセット")
     },
     async submit () {
-      console.log("確認")
       const response = await axios.post('/api/post', this.postData)
       if (response.status === UNPROCESSABLE_ENTITY) {
         this.$store.commit('error/setErrorMessages', response.data.errors)
@@ -58,7 +57,6 @@ export default {
       }
       this.reset()
       this.$router.push({name: 'PostIndex'})
-      console.log("確認")
     }
   }
 }

@@ -23,6 +23,10 @@ Route::post('/post', 'PostController@create')->name('post.create');
 Route::get('/posts', 'PostController@index')->name('post.index');
 //userの詳細情報を取得する
 Route::get('/users/{user}', 'UserController@show')->name('user.show');
+//myUser情報を更新する
+Route::put('/user/mypage', 'UserController@update')->name('mypage.update');
+//myUser情報を取得する
+Route::get('/user/mypage', 'UserController@myUserGet')->name('mypage.get');
 //chatRoom情報の取得
 Route::get('/chats/users/{user}', 'ChatRoomController@show')->name('chat.show');
 //chatMessageを保存する

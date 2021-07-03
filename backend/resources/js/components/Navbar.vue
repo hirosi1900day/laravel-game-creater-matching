@@ -9,6 +9,11 @@
           投稿
         </RouterLink>
       </div>
+      <div class="navbar__item">
+        <RouterLink class="navbar__brand" to="/user/mypage">
+          マイページ
+        </RouterLink>
+      </div>
       <span class="navbar__item">
       </span>
     </div>

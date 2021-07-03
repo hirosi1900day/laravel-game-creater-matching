@@ -33,7 +33,6 @@ export default {
   props: ['partnerUserId'],
   methods: {
     async fetchChatRoom () {
-      console.log("メソッドにアクセスしました")
       const response = await axios.get(`/api/chats/users/${this.partnerUserId}`)
       if (response.status !== OK) {
         this.$store.commit('error/setCode', response.status)

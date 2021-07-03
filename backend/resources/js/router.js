@@ -6,6 +6,7 @@ import PostList from './pages/PostList.vue'
 import PostForm from './pages/PostForm.vue'
 import Text from './pages/Text.vue'
 import UserDetail from './pages/UserDetail.vue'
+import UserMypage from './pages/UserMypage.vue'
 import ChatRoom from './pages/ChatRoom.vue'
 import Store from './store'
 //エラーハンドリング
@@ -60,7 +61,6 @@ const routes = [
     name: 'ChatRoom',
     props: true,
     beforeEnter: (to, from, next) => {
-     
       if(!Store.getters['auth/check']){
         next('/signIn')
       }
@@ -68,9 +68,16 @@ const routes = [
     }
   },
   {
-    path: '/text',
-    component: Text
-  }
+    path: '/user/mypage',
+    component: UserMypage,
+    name: "Mypage",
+    beforeEnter: (to, from, next) => {
+      if(!Store.getters['auth/check']){
+        next('/signIn')
+      }
+      next()
+    }
+  },
 ]
 
 // VueRouterインスタンスを作成する

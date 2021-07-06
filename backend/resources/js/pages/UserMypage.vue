@@ -2,6 +2,10 @@
   <div class="photo-form">
     <h2 class="title">マイページ</h2>
     <form class="form" @submit.prevent="update">
+      <input type="file" @change="fileSelected">
+      <output class="form__output" v-if="preview">
+        <img :src="preview" alt=""> 
+      </output>
       <input class="form__item" type="text" v-model="myUserData.name">
       <textarea class="form__item" type="text" v-model="myUserData.self_introduce"></textarea>
       <div v-if="errors" class="errors">
@@ -29,8 +33,10 @@ export default {
       myUserData: {
         name: '',
         seld_introduce: '',
-        user_id: ''
-      }
+        user_id: '',
+        file: null,
+      },
+      preview: null
     }
   },
   computed: {
@@ -43,27 +49,59 @@ export default {
     })
   },
   methods: {
+    fileSelected(event){
+      if (event.target.files.length === 0) {
+        this.reset()
+        return false
+      }
+      // ファイルが画像ではなかったら処理中断
+      if (! event.target.files[0].type.match('image.*')) {
+        this.reset()
+        return false
+      }
+
+      // FileReaderクラスのインスタンスを取得
+      const reader = new FileReader()
+      // ファイルを読み込み終わったタイミングで実行する処理
+      reader.onload = e => {
+        // previewに読み込み結果（データURL）を代入する
+        // previewに値が入ると<output>につけたv-ifがtrueと判定される
+        // また<output>内部の<img>のsrc属性はpreviewの値を参照しているので
+        // 結果として画像が表示される
+        this.preview = e.target.result
+
+      }
+      // ファイルを読み込む
+      // 読み込まれたファイルはデータURL形式で受け取れる（上記onload参照）
+      reader.readAsDataURL(event.target.files[0])
+      this.myUserData.file = event.target.files[0]
+      console.log("写真確認")
+      console.log(this.myUserData.file)
+    },
+    reset () {
+    this.preview = ''
+    this.$el.querySelector('input[type="file"]').value = null
+    this.myUserData.file = null
+    },
     async get() {
       const response = await axios.get('/api/user/mypage')
       if (!response.status == OK) {
         this.$store.commit('error/setCode', response.status)
       }
-      console.log("get")
-      console.log(response.data)
       let getData = response.data
       this.myUserData.name = getData.name
       this.myUserData.self_introduce = getData.self_introduce
     },
     async update () {
+      console.log("updateでの写真確認")
+      console.log(this.myUserData)
       this.myUserData.user_id = this.$store.state.auth.user.id
-      const response = await axios.put('/api/user/mypage', this.myUserData)
+      const response = await axios.post('/api/user/mypage', this.myUserData)
       if (response.status === UNPROCESSABLE_ENTITY) {
         this.$store.commit('error/setErrorMessages', response.data.errors)
       } else {
         this.$store.commit('error/setCode', response.status)
       }
-      console.log('update')
-      console.log(response.data)
       let returnData = response.data
       this.myUserData.name = returnData.name 
       this.myUserData.self_introduce = returnData.self_introduce

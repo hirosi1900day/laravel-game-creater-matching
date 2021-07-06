@@ -32,6 +32,7 @@ class RegisterApiTest extends TestCase
             'password' => 'test1234',
             'password_confirmation' => 'test1234',
         ];
+        
         $this->post('signup',$data);
 
         unset($data['password'],$data[ 'password_confirmation']);

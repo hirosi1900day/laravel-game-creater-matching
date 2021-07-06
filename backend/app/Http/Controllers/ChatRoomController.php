@@ -16,6 +16,32 @@ class ChatRoomController extends Controller
         // 認証が必要
         $this->middleware('auth');
     }
+    public function index() {
+        //ログインuserからchatRoomを取得する
+        $chat_room = [];
+        $chat_room_ids1 = [];
+        $chat_room_ids2 = [];
+        $users = [];
+        $chat_room_object_ids1 = ChatRoom::where('user_id', Auth::id())->get();
+        $chat_room_object_ids2 =  ChatRoom::where('send_user_id', Auth::id())->get();
+
+        $chat_room_ids1 = json_decode(json_encode($chat_room_object_ids1), true);
+        $chat_room_ids2 = json_decode(json_encode($chat_room_object_ids2), true);
+       
+        $chat_rooms = array_merge((array)$chat_room_ids1, (array)$chat_room_ids2);
+        
+        foreach($chat_rooms as $index=>$chat_room){
+          
+            if($chat_room['user_id'] != Auth::id()) {
+                
+                $users[$index]=User::findOrFail($chat_room['user_id']);
+            }else if($chat_room['send_user_id'] != Auth::id()) {
+                $users[$index]=User::findOrFail($chat_room['send_user_id']);
+            }
+        }
+    
+        return ['chatroom' => $chat_rooms, 'user' => $users]; 
+    }
   
     public function show(User $user) {
         

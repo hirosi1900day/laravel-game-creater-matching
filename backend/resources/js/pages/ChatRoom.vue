@@ -39,7 +39,6 @@ export default {
         return false
       }
       this.getMessageData = response.data
-      console.log(this.getMessageData)
     },
     reset () {
       this.sendMessageData.message = ''
@@ -66,7 +65,6 @@ export default {
     }
   },
   created: function() {
-    console.log("createdが実行されました")
     this.fetchChatRoom()
   }
 }

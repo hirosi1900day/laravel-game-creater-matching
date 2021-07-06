@@ -27,6 +27,7 @@ class UserMypageUpdate extends FormRequest
         return [
             'name' => 'required',
             'self_introduce' => 'required',
+            'file' => 'file|mimes:jpg,jpeg,png,gif|max:1048'
         ];
     }
 }

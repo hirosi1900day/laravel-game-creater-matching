@@ -4,10 +4,11 @@ import VueRouter from 'vue-router'
 // ページコンポーネントをインポートする
 import PostList from './pages/PostList.vue'
 import PostForm from './pages/PostForm.vue'
-import Text from './pages/Text.vue'
+import UserIndex from './pages/UserIndex.vue'
 import UserDetail from './pages/UserDetail.vue'
 import UserMypage from './pages/UserMypage.vue'
 import ChatRoom from './pages/ChatRoom.vue'
+import ChatIndex from './pages/ChatIndex.vue'
 import Store from './store'
 //エラーハンドリング
 import SystemError from './pages/errors/System.vue'
@@ -49,6 +50,11 @@ const routes = [
     name: 'PostForm',
   },
   {
+    path: '/user/index',
+    component: UserIndex,
+    name: "UserIndex",
+  },
+  {
     //userの詳細画面
     path: '/user/detail/:userId',
     component: UserDetail,
@@ -56,10 +62,9 @@ const routes = [
     props: true
   },
   {
-    path: '/chat/:partnerUserId',
-    component: ChatRoom,
-    name: 'ChatRoom',
-    props: true,
+    path: '/user/mypage',
+    component: UserMypage,
+    name: "Mypage",
     beforeEnter: (to, from, next) => {
       if(!Store.getters['auth/check']){
         next('/signIn')
@@ -68,9 +73,23 @@ const routes = [
     }
   },
   {
-    path: '/user/mypage',
-    component: UserMypage,
-    name: "Mypage",
+    path: '/chat/index',
+    component: ChatIndex,
+    name: 'ChatIndex',
+    props: true,
+    beforeEnter: (to, from, next) => {
+      if(!Store.getters['auth/check']){
+        next('/signIn')
+      }
+      next()
+    }
+  },
+  
+  {
+    path: '/chat/room/:partnerUserId',
+    component: ChatRoom,
+    name: 'ChatRoom',
+    props: true,
     beforeEnter: (to, from, next) => {
       if(!Store.getters['auth/check']){
         next('/signIn')

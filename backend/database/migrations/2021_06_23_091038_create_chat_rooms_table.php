@@ -14,6 +14,7 @@ class CreateChatRoomsTable extends Migration
     public function up()
     {
         Schema::create('chat_rooms', function (Blueprint $table) {
+        
             $table->bigIncrements('id');
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('send_user_id');
@@ -21,6 +22,7 @@ class CreateChatRoomsTable extends Migration
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('send_user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->unique(['user_id', 'send_user_id']);
         });
     }
 

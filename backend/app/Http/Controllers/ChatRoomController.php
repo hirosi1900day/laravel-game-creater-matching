@@ -27,7 +27,6 @@ class ChatRoomController extends Controller
 
         $chat_room_ids1 = json_decode(json_encode($chat_room_object_ids1), true);
         $chat_room_ids2 = json_decode(json_encode($chat_room_object_ids2), true);
-       
         $chat_rooms = array_merge((array)$chat_room_ids1, (array)$chat_room_ids2);
         
         foreach($chat_rooms as $index=>$chat_room){

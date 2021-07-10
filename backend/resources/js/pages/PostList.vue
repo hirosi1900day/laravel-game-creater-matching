@@ -17,10 +17,11 @@
 import Post from '../components/Post.vue'
 import {OK} from '../util.js'
 import Pagination from '../components/Pagination.vue'
+
 export default {
   components: {
     Post,
-    Pagination
+    Pagination,
   },
   data () {
     return {
@@ -44,7 +45,8 @@ export default {
         return false
       }
       this.posts = response.data.data
-      
+      console.log('確認') 
+      console.log(this.posts)
       this.currentPage = response.data.current_page
       this.lastPage = response.data.last_page
     }

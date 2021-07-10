@@ -3,10 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StorePost;
+use App\Http\Requests\MyPostUpdate;
 use App\Post;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
-
 
 class PostController extends Controller
 {
@@ -39,8 +39,54 @@ class PostController extends Controller
     {
         $posts = Post::with(['user'])
         ->orderBy(Post::CREATED_AT, 'desc')->paginate();
-
-        
         return $posts;
+    }
+
+    public function detail(Post $post) 
+    {
+        $user = $post->user;
+        return ['user'=>$user,'post'=>$post];
+    }
+
+    public function mypage() 
+    {
+        $posts = Auth::user()->posts()->orderBy('created_at', 'desc')->get();
+        return $posts;
+    }
+    public function mypost(Post $post) {
+        $postUser = $post->user;
+        if($postUser->id == Auth::id()){
+            return $post;
+        }
+        return [];
+    }
+    public function myupdate(Post $post,MyPostUpdate $request)
+    {
+        DB::beginTransaction();
+        try {
+            $post->title = $request->title;
+            $post->content = $request->content;
+            $post->save();
+            DB::commit();
+        } catch (\Exception $exception) {
+            DB::rollBack();
+            throw $exception;
+        }
+        return response($post,201);
+    }
+    public function delete(Post $post) {
+        $postUser = $post->user;
+        DB::beginTransaction();
+        if($postUser->id == Auth::id()){
+            try {
+                $post->delete();
+                DB::commit();
+                return response(200);
+            } catch (\Exception $exception) {
+                DB::rollBack();
+                throw $exception;
+            }
+        }
+        return response(400);
     }
 }

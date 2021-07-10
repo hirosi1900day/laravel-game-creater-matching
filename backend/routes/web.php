@@ -24,15 +24,16 @@ Route::get('logout', 'Auth\LoginController@logout')->name('logout');
 
 //Admin 認証不要
 Route::group(['prefix' => 'admin'], function() {
-    Route::get('/',         function () { return redirect('/admin/home'); });
-    Route::get('login',     'Admin\LoginController@showLoginForm')->name('admin.login');
-    Route::post('login',    'Admin\LoginController@login')->name('admin.login');
+    Route::get('/',      function () { return redirect('/admin/home'); });
+    Route::get('login',  'Admin\LoginController@showLoginForm')->name('admin.login');
+    Route::post('login', 'Admin\LoginController@login')->name('admin.login');
 });
  
 //Admin ログイン後
 Route::group(['prefix' => 'admin', 'middleware' => 'auth:admin'], function() {
-    Route::post('logout',   'Admin\LoginController@logout')->name('admin.logout');
-    Route::get('home',      'Admin\HomeController@index')->name('admin.home');
+    Route::post('logout', 'Admin\LoginController@logout')->name('admin.logout');
+    Route::get('home',    'Admin\HomeController@index')->name('admin.home');
+    Route::get('users/{user}',    'Admin\HomeController@show')->name('admin.user.show');
 });
 
 

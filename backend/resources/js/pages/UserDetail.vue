@@ -2,7 +2,7 @@
   <div>
     <div>ユーザー詳細ページ{{userId}}</div>
     <div>{{this.user.name}}</div>
-    
+    <router-link :to="{ name: 'ChatRoom', params: { partnerUserId: userId}}">メッセージを送る</router-link>
   </div>
 </template>
 

@@ -4,6 +4,9 @@ import VueRouter from 'vue-router'
 // ページコンポーネントをインポートする
 import PostList from './pages/PostList.vue'
 import PostForm from './pages/PostForm.vue'
+import PostMypage from './pages/PostMypage.vue'
+import PostDetail from './pages/PostDetail.vue'
+import PostMypageDetail from './pages/PostMypageDetail.vue'
 import UserIndex from './pages/UserIndex.vue'
 import UserDetail from './pages/UserDetail.vue'
 import UserMypage from './pages/UserMypage.vue'
@@ -12,7 +15,6 @@ import ChatIndex from './pages/ChatIndex.vue'
 import Store from './store'
 //エラーハンドリング
 import SystemError from './pages/errors/System.vue'
-
 
 
 // VueRouterプラグインを使用する
@@ -48,6 +50,35 @@ const routes = [
     path: '/post/create',
     component: PostForm,
     name: 'PostForm',
+  },
+  {
+    path: '/post/detail/:postId',
+    component: PostDetail,
+    name: 'PostDetail',
+    props: true
+  },
+  {
+    path: '/post/mypage',
+    component: PostMypage,
+    name: 'PostMypage',
+    beforeEnter: (to, from, next) => {
+      if(!Store.getters['auth/check']){
+        next('/signIn')
+      }
+      next()
+    }
+  },
+  {
+    path: '/post/mypage/detail/:postId',
+    component: PostMypageDetail,
+    name: 'PostMypageDetail',
+    props: true,
+    beforeEnter: (to, from, next) => {
+      if(!Store.getters['auth/check']){
+        next('/signIn')
+      }
+      next()
+    }
   },
   {
     path: '/user/index',

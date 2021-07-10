@@ -1,44 +1,47 @@
-
 <template>
   <div class="photo-list">
     <div class="grid">
-      <ChatUser
+      <MypagePost
         class="grid__item"
-        v-for="user in users.user"
-        :key="user.id"
-        :item="user"
+        v-for="post in posts"
+        :key="post.id"
+        :item="post"
       />
-      <h1>chatIndex確認
-      </h1>
+      <h1>投稿myapge</h1>
     </div>
   </div>
 </template>
 
 <script>
-import ChatUser from '../components/ChatUser.vue'
+import MypagePost from '../components/MypagePost.vue'
 import {OK} from '../util.js'
 
 export default {
   components: {
-    ChatUser,
+    MypagePost,
   },
   data () {
     return {
-      users: [],
+      posts: [],
     }
   },
   methods: {
-    async fetchUsers () {
-      const response = await axios.get('/api/chats/index')
+    async fetchPosts () {
+      const response = await axios.get('/api/posts/mypage')
       if (response.status !== OK) {
         this.$store.commit('error/setCode', response.status)
         return false
       }
-      this.users = response.data
+      this.posts = response.data
+      console.log(response.data)
     }
   },
   created: function() {
-    this.fetchUsers() 
+     this.fetchPosts()
   }
 }
 </script>
+
+<style scoped>
+
+</style>

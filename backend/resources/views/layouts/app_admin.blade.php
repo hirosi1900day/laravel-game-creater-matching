@@ -11,6 +11,7 @@
 </head>
 
 <body>  
+  @include('commons.navbar_admin')
   @yield('content') 
   <div id="app_admin"></div>
 </body>

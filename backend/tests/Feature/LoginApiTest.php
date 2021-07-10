@@ -41,9 +41,11 @@ class LoginApiTest extends TestCase
         $this->from($url)->post($url, ['password' => ''])->assertRedirect($url);
     }
 
-    /*
+    /**
      * @test
      */
+     
+
     public function 登録済みのユーザーを認証して返却する()
     {
         $response = $this->json('POST', route('login'), [
@@ -54,7 +56,7 @@ class LoginApiTest extends TestCase
         $this->assertAuthenticatedAs($this->user);
     }
 
-    /*
+    /**
      * @test
      */
     public function ログインIDが間違っている() 
@@ -74,5 +76,15 @@ class LoginApiTest extends TestCase
 
         $this->from($url)->post($url,$postData)
             ->assertRedirect($url);
+    }
+
+    /**
+     * @test
+     */
+    public function ログアウトの確認() {
+        $this->withoutExceptionHandling();
+        $this->login();
+        $this->get('logout');
+        $this->assertGuest();
     }
 }

@@ -1,6 +1,9 @@
 <template>
   <div class="photo-form">
     <h2 class="title">マイページ</h2>
+    <RouterLink class="navbar__brand" :to="{name: 'PostMypage'}">
+        自分の投稿
+    </RouterLink>
     <form class="form" @submit.prevent="update">
       <input type="file" @change="fileSelected">
       <output class="form__output" v-if="preview">

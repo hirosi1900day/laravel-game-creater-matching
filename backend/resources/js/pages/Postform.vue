@@ -46,10 +46,9 @@ export default {
     reset () {
       this.postData.title = ""
       this.postData.content = ""
-      console.log("リセット")
     },
     async submit () {
-      const response = await axios.post('/api/post', this.postData)
+      const response = await axios.post('/api/posts', this.postData)
       if (response.status === UNPROCESSABLE_ENTITY) {
         this.$store.commit('error/setErrorMessages', response.data.errors)
       } else {

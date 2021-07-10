@@ -4,14 +4,21 @@
       <router-link :to="{ name: 'UserDetail', params: { userId: item.user.id}}">{{item.user.name}}</router-link>
       <div>{{item.title}}</div>
       <div>{{item.content}}</div>
-      
-      <router-link :to="{ name: 'ChatRoom', params: { partnerUserId: item.user.id}}">チャットでメッセージを送る</router-link>
+      <Favorite
+        :postId="item.id"
+      />
+      <router-link :to="{ name: 'PostDetail', params: { postId: item.id}}">詳細を確認する</router-link>
     </div>
   </div>
 </template>
 
 <script>
+import Favorite from  './Favorite.vue'
+
 export default {
+  components: {
+    Favorite
+  },
   props: {
     item: {
       type: Object,

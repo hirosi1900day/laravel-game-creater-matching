@@ -3430,7 +3430,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       // 読み込まれたファイルはデータURL形式で受け取れる（上記onload参照）
 
 
-      reader.readAsDataURL(event.target.files[0]);
+      reader.readAsDataURL(event.target.files[0]); // this.myUserData.file = event.target.files[0]
+
       this.myUserData.file = event.target.files[0];
       console.log("写真確認");
       console.log(this.myUserData.file);
@@ -3475,18 +3476,28 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       var _this3 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
-        var response, returnData;
+        var formData, headers, response, returnData;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
           while (1) {
             switch (_context2.prev = _context2.next) {
               case 0:
                 console.log("updateでの写真確認");
                 console.log(_this3.myUserData);
+                formData = new FormData();
+                formData.append('file', _this3.myUserData.file);
+                formData.append('name', _this3.myUserData.name);
+                formData.append('self_introduce', _this3.myUserData.self_introduce);
+                formData.append('user_id', _this3.$store.state.auth.user.id);
                 _this3.myUserData.user_id = _this3.$store.state.auth.user.id;
-                _context2.next = 5;
-                return axios.post('/api/user/mypage', _this3.myUserData);
+                headers = {
+                  "content-type": "multipart/form-data"
+                };
+                _context2.next = 11;
+                return axios.post('/api/user/mypage', formData, {
+                  headers: headers
+                });
 
-              case 5:
+              case 11:
                 response = _context2.sent;
 
                 if (response.status === _util__WEBPACK_IMPORTED_MODULE_2__["UNPROCESSABLE_ENTITY"]) {
@@ -3499,7 +3510,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                 _this3.myUserData.name = returnData.name;
                 _this3.myUserData.self_introduce = returnData.self_introduce;
 
-              case 10:
+              case 16:
               case "end":
                 return _context2.stop();
             }

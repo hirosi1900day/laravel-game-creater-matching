@@ -62,7 +62,6 @@ export default {
         this.reset()
         return false
       }
-
       // FileReaderクラスのインスタンスを取得
       const reader = new FileReader()
       // ファイルを読み込み終わったタイミングで実行する処理
@@ -72,11 +71,11 @@ export default {
         // また<output>内部の<img>のsrc属性はpreviewの値を参照しているので
         // 結果として画像が表示される
         this.preview = e.target.result
-
       }
       // ファイルを読み込む
       // 読み込まれたファイルはデータURL形式で受け取れる（上記onload参照）
       reader.readAsDataURL(event.target.files[0])
+      // this.myUserData.file = event.target.files[0]
       this.myUserData.file = event.target.files[0]
       console.log("写真確認")
       console.log(this.myUserData.file)
@@ -98,8 +97,17 @@ export default {
     async update () {
       console.log("updateでの写真確認")
       console.log(this.myUserData)
+
+      const formData = new FormData()
+
+      formData.append('file',this.myUserData.file)
+      formData.append('name',this.myUserData.name)
+      formData.append('self_introduce',this.myUserData.self_introduce)
+      formData.append('user_id',this.$store.state.auth.user.id)
+
       this.myUserData.user_id = this.$store.state.auth.user.id
-      const response = await axios.post('/api/user/mypage', this.myUserData)
+      const headers = { "content-type": "multipart/form-data" }
+      const response = await axios.post('/api/user/mypage', formData, {headers})
       if (response.status === UNPROCESSABLE_ENTITY) {
         this.$store.commit('error/setErrorMessages', response.data.errors)
       } else {

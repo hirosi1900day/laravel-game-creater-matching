@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\UserMypageUpdate;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
@@ -37,7 +38,7 @@ class UserController extends Controller
             return response(403);
         }
 
-        dd($request->file);
+
         $user = Auth::user();
         $user->name = $request->name;
         $user->self_introduce = $request->self_introduce;

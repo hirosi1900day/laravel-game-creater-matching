@@ -33,21 +33,31 @@ class UserController extends Controller
         return Auth::user();
     }
 
-    public function store(UserMypageUpdate $request) {
+    public function store(Request $request) {
         if($request->user_id != Auth::id()) {
             return response(403);
         }
-
-
         $user = Auth::user();
         $user->name = $request->name;
         $user->self_introduce = $request->self_introduce;
+        $path = "";
 
-        if($file = $request->file){
-            //保存するファイルに名前をつける    
-            $fileName = time().'.'.$file->getClientOriginalExtension();
-            $path = Storage::disk('s3')->putFileAs('/userImage',$file, $fileName,'public');
-            $user->image_location = $path;
+        if($file = $request->file) {
+            if($user->image_loccation){
+                //新規登録
+                //保存するファイルに名前をつける 
+                $fileName = time().'.'.$file->getClientOriginalExtension();
+                $path = Storage::disk('s3')->putFileAs('/userImage',$file, $fileName,'public');
+                $user->image_location = $path;
+
+            } else {
+                //アップデート
+                //保存するファイルに名前をつける
+                Storage::disk('s3')->delete($user->image_location);
+                $fileName = time().'.'.$file->getClientOriginalExtension();
+                $path = Storage::disk('s3')->putFileAs('/userImage',$file, $fileName,'public');
+                $user->image_location = $path;
+            }
         }
        
         DB::beginTransaction();

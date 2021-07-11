@@ -2346,6 +2346,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     item: {
@@ -3488,16 +3489,17 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                 formData.append('name', _this3.myUserData.name);
                 formData.append('self_introduce', _this3.myUserData.self_introduce);
                 formData.append('user_id', _this3.$store.state.auth.user.id);
+                formData.append('myUserData', _this3.myUserData);
                 _this3.myUserData.user_id = _this3.$store.state.auth.user.id;
                 headers = {
                   "content-type": "multipart/form-data"
                 };
-                _context2.next = 11;
+                _context2.next = 12;
                 return axios.post('/api/user/mypage', formData, {
                   headers: headers
                 });
 
-              case 11:
+              case 12:
                 response = _context2.sent;
 
                 if (response.status === _util__WEBPACK_IMPORTED_MODULE_2__["UNPROCESSABLE_ENTITY"]) {
@@ -3510,7 +3512,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                 _this3.myUserData.name = returnData.name;
                 _this3.myUserData.self_introduce = returnData.self_introduce;
 
-              case 16:
+              case 17:
               case "end":
                 return _context2.stop();
             }
@@ -41032,7 +41034,9 @@ var render = function() {
           [_vm._v(_vm._s(_vm.item.name))]
         ),
         _vm._v(" "),
-        _c("div", [_vm._v(_vm._s(_vm.item.name))])
+        _c("div", [_vm._v(_vm._s(_vm.item.name))]),
+        _vm._v(" "),
+        _c("img", { attrs: { src: _vm.item.url } })
       ],
       1
     )

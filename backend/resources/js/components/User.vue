@@ -3,6 +3,7 @@
     <div style="red">
       <router-link :to="{ name: 'UserDetail', params: { userId: item.id}}">{{item.name}}</router-link>
       <div>{{item.name}}</div>
+      <img :src="item.url">
     </div>
   </div>
 </template>

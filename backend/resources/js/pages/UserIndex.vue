@@ -34,6 +34,7 @@ export default {
         return false
       }
       this.users = response.data
+      
     }
   },
   created: function() {

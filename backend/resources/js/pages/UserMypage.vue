@@ -104,6 +104,7 @@ export default {
       formData.append('name',this.myUserData.name)
       formData.append('self_introduce',this.myUserData.self_introduce)
       formData.append('user_id',this.$store.state.auth.user.id)
+      formData.append('myUserData', this.myUserData)
 
       this.myUserData.user_id = this.$store.state.auth.user.id
       const headers = { "content-type": "multipart/form-data" }

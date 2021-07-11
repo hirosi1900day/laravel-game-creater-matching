@@ -4,8 +4,11 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
+
 class Post extends Model
 {
+
+  
 
     protected $perPage = 5;
     
@@ -18,4 +21,7 @@ class Post extends Model
     {
         return $this->belongsToMany(User::class, 'favorites', 'post_id', 'user_id')->withTimestamps();
     }
+
+   
+    
 }

@@ -62,6 +62,7 @@ class PostController extends Controller
     }
     public function myupdate(Post $post,MyPostUpdate $request)
     {
+        
         DB::beginTransaction();
         try {
             $post->title = $request->title;
@@ -73,7 +74,8 @@ class PostController extends Controller
             throw $exception;
         }
         return response($post,201);
-    }
+    }      
+  
     public function delete(Post $post) {
         $postUser = $post->user;
         DB::beginTransaction();
@@ -87,6 +89,6 @@ class PostController extends Controller
                 throw $exception;
             }
         }
-        return response(400);
+        return abort(403);
     }
 }

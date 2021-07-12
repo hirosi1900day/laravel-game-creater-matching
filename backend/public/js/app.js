@@ -2225,6 +2225,30 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({//   data () {
   //     return {
   //       showForm: false
@@ -2299,6 +2323,8 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Favorite_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Favorite.vue */ "./resources/js/components/Favorite.vue");
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+//
 //
 //
 //
@@ -2314,6 +2340,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
     Favorite: _Favorite_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
@@ -2323,7 +2350,10 @@ __webpack_require__.r(__webpack_exports__);
       type: Object,
       required: true
     }
-  }
+  },
+  computed: Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])({
+    authCheck: "auth/check"
+  })
 });
 
 /***/ }),
@@ -2847,7 +2877,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     }
   },
   methods: {
-    fetchPhotos: function fetchPhotos() {
+    fetchPosts: function fetchPosts() {
       var _this = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
@@ -2898,7 +2928,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               switch (_context2.prev = _context2.next) {
                 case 0:
                   _context2.next = 2;
-                  return _this2.fetchPhotos();
+                  return _this2.fetchPosts();
 
                 case 2:
                 case "end":
@@ -3426,7 +3456,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         // previewに値が入ると<output>につけたv-ifがtrueと判定される
         // また<output>内部の<img>のsrc属性はpreviewの値を参照しているので
         // 結果として画像が表示される
-        _this.preview = e.target.result;
+        _this.preview.file = e.target.result;
       }; // ファイルを読み込む
       // 読み込まれたファイルはデータURL形式で受け取れる（上記onload参照）
 
@@ -40808,88 +40838,148 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "nav",
-    { staticClass: "navbar" },
-    [
-      _c(
-        "RouterLink",
-        { staticClass: "navbar__brand", attrs: { to: { name: "PostIndex" } } },
-        [_vm._v("\n    Home\n  ")]
-      ),
-      _vm._v(" "),
-      _c("div", { staticClass: "navbar__menu" }, [
-        _c(
-          "div",
-          { staticClass: "navbar__item" },
-          [
-            _c(
-              "RouterLink",
-              {
-                staticClass: "navbar__brand",
-                attrs: { to: { name: "PostForm" } }
-              },
-              [_vm._v("\n        投稿\n      ")]
-            )
-          ],
-          1
-        ),
-        _vm._v(" "),
-        _c(
-          "div",
-          { staticClass: "navbar__item" },
-          [
-            _c(
-              "RouterLink",
-              {
-                staticClass: "navbar__brand",
-                attrs: { to: { name: "Mypage" } }
-              },
-              [_vm._v("\n        マイページ\n      ")]
-            )
-          ],
-          1
-        ),
-        _vm._v(" "),
-        _c(
-          "div",
-          { staticClass: "navbar__item" },
-          [
-            _c(
-              "RouterLink",
-              {
-                staticClass: "navbar__brand",
-                attrs: { to: { name: "ChatIndex" } }
-              },
-              [_vm._v("\n        chatUser一覧\n      ")]
-            )
-          ],
-          1
-        ),
-        _vm._v(" "),
-        _c(
-          "div",
-          { staticClass: "navbar__item" },
-          [
-            _c(
-              "RouterLink",
-              {
-                staticClass: "navbar__brand",
-                attrs: { to: { name: "UserIndex" } }
-              },
-              [_vm._v("\n        User一覧\n      ")]
-            )
-          ],
-          1
-        ),
-        _vm._v(" "),
-        _c("span", { staticClass: "navbar__item" })
-      ])
-    ],
-    1
-  )
+  return _c("header", { staticStyle: { margin: "40px" } }, [
+    _c(
+      "nav",
+      {
+        staticClass: "navbar fixed-top navbar-expand-xl navbar-light bg-color"
+      },
+      [
+        _c("div", { staticClass: "container-fluid" }, [
+          _vm._m(0),
+          _vm._v(" "),
+          _vm._m(1),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              staticClass: "collapse navbar-collapse",
+              attrs: { id: "navbar" }
+            },
+            [
+              _c("ul", { staticClass: "navbar-nav" }, [
+                _c(
+                  "li",
+                  { staticClass: "nav-item" },
+                  [
+                    _c(
+                      "RouterLink",
+                      {
+                        staticClass: "navbar__brand",
+                        attrs: { to: { name: "PostIndex" } }
+                      },
+                      [_vm._v("\n                Home\n              ")]
+                    )
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c(
+                  "li",
+                  { staticClass: "nav-item" },
+                  [
+                    _c(
+                      "RouterLink",
+                      {
+                        staticClass: "navbar__brand",
+                        attrs: { to: { name: "PostForm" } }
+                      },
+                      [_vm._v("\n                投稿\n              ")]
+                    )
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c(
+                  "li",
+                  { staticClass: "nav-item" },
+                  [
+                    _c(
+                      "RouterLink",
+                      {
+                        staticClass: "navbar__brand",
+                        attrs: { to: { name: "Mypage" } }
+                      },
+                      [_vm._v("\n                マイページ\n               ")]
+                    )
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c(
+                  "li",
+                  { staticClass: "nav-item" },
+                  [
+                    _c(
+                      "RouterLink",
+                      {
+                        staticClass: "navbar__brand",
+                        attrs: { to: { name: "ChatIndex" } }
+                      },
+                      [_vm._v("\n                chatUser一覧\n              ")]
+                    )
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c(
+                  "li",
+                  { staticClass: "nav-item" },
+                  [
+                    _c(
+                      "RouterLink",
+                      {
+                        staticClass: "navbar__brand",
+                        attrs: { to: { name: "UserIndex" } }
+                      },
+                      [_vm._v("\n                User一覧\n              ")]
+                    )
+                  ],
+                  1
+                )
+              ])
+            ]
+          )
+        ])
+      ]
+    )
+  ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "a",
+      {
+        staticClass: "navbar-brand",
+        attrs: { href: "/", "aria-label": "ホーム" }
+      },
+      [_c("div", [_vm._v("アイコン")])]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "button",
+      {
+        staticClass: "navbar-toggler",
+        attrs: {
+          type: "button",
+          "data-toggle": "collapse",
+          "data-target": "#navbar",
+          "aria-controls": "navbar",
+          "aria-expanded": "false",
+          "aria-label": "Toggle navigation"
+        }
+      },
+      [_c("span", { staticClass: "navbar-toggler-icon" })]
+    )
+  }
+]
 render._withStripped = true
 
 
@@ -40981,7 +41071,9 @@ var render = function() {
         _vm._v(" "),
         _c("div", [_vm._v(_vm._s(_vm.item.content))]),
         _vm._v(" "),
-        _c("Favorite", { attrs: { postId: _vm.item.id } }),
+        _vm.authCheck
+          ? _c("Favorite", { attrs: { postId: _vm.item.id } })
+          : _vm._e(),
         _vm._v(" "),
         _c(
           "router-link",

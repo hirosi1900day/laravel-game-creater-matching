@@ -5,6 +5,7 @@
       <div>{{item.title}}</div>
       <div>{{item.content}}</div>
       <Favorite
+        v-if="authCheck"
         :postId="item.id"
       />
       <router-link :to="{ name: 'PostDetail', params: { postId: item.id}}">詳細を確認する</router-link>
@@ -14,6 +15,7 @@
 
 <script>
 import Favorite from  './Favorite.vue'
+import {mapGetters} from "vuex"
 
 export default {
   components: {
@@ -24,7 +26,11 @@ export default {
       type: Object,
       required: true
     }
-  }
+  },
+  computed: 
+    mapGetters({
+      authCheck: "auth/check"
+    }),
 }
 </script>
 

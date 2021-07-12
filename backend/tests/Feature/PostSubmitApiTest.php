@@ -45,10 +45,34 @@ class PostSubmitApiTest extends TestCase
     }
     /** @test delete */
     public function 他人の投稿は削除できない() {
-        //
+        $post = factory(Post::class)->create(['user_id' => $this->user->id]);
+        $user2 = factory(User::class)->create();
+        $this->login($user2);
+        $this->delete('api/posts/'.$post->id.'/delete')
+        ->assertStatus(403);
+        $this->assertDatabaseHas('posts', ['id' => $post->id]);
+    }
+    /** @test delete */
+    public function 自分の投稿は削除できる() {
+        
+        $post = factory(Post::class)->create(['user_id' => $this->user->id]);
+        $this->login($post->user);
+        $this->delete('api/posts/'.$post->id.'/delete')
+        ->assertStatus(200);
+        $this->assertDatabaseMissing('posts', ['id' => $post->id]);
     }
     /** @test edit */
-    public function 他人の投稿は更新できる() {
-        //
+    public function 他人の投稿は更新できない() {
+        $validData = [
+            'title' => '新タイトル',
+            'content' => '新コンテント'
+        ];
+
+        $user2 = factory(User::class)->create();
+        $post = factory(Post::class)->create(['user_id' => $user2->id]);
+        $user = factory(User::class)->create();
+        $this->login($user);
+        $this->put('api/posts/'.$post->id.'/mypost', $validData)
+        ->assertStatus(405);
     }
 }

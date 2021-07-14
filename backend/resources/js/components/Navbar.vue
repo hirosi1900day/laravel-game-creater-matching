@@ -56,12 +56,11 @@
 
 
 <script>
-
-
-export default {
  
 
-
+// $('.navbar-nav>li').on('click', function(){
+//       $('.navbar-collapse').collapse('hide');
+// });
 //   data () {
 //     return {
 //       showForm: false
@@ -75,6 +74,6 @@ export default {
 //       return this.$store.getters['auth/username']
 //     }
 //   }
-}
+
 
 </script>

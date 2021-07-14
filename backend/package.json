@@ -27,5 +27,8 @@
     },
     "rules": {
         "no-console": 0
+    },
+    "dependencies": {
+        "tailwindcss": "^2.2.4"
     }
 }

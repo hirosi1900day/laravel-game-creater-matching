@@ -96,7 +96,7 @@ class User extends Authenticatable
         if(!$this->image_location){
             return "" ;
         }
-        return Storage::disk('s3')->url("userImage/1625974329.png");
+        return Storage::disk('s3')->url($this->image_location);
     }
 }
 

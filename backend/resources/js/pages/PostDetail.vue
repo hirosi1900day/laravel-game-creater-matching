@@ -1,9 +1,17 @@
 <template>
   <div class="post-marge">
     <div style="red">
-      <router-link :to="{ name: 'UserDetail', params: { userId: post.user.id}}">{{post.user.name}}</router-link>
-      <div>{{post.post.title}}</div>
-      <div>{{post.post.content}}</div>
+      <img :src="post.post.user.url">
+      <div class="row">
+      <aside class="col-sm-4">
+        <div>side</div>
+        </aside>
+      <div class="col-sm-8">
+        <router-link :to="{ name: 'UserDetail', params: { userId: post.user.id}}">{{post.user.name}}</router-link>
+        <div>{{post.post.title}}</div>
+        <div>{{post.post.content}}</div>
+      </div>
+       </div>
       <Favorite
         :postId="post.post.id"
       />

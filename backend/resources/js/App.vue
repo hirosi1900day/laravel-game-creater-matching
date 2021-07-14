@@ -3,7 +3,7 @@
     <header>
       <Navbar />
     </header>
-    <main>
+    <main class="back-gray">
       <div class="container">
         <RouterView />
       </div>
@@ -42,3 +42,9 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.back-gray{
+    background:#f4f8fa;
+ }
+</style>

@@ -1,6 +1,7 @@
 <template>
   <div class="post-marge">
-    <div style="red">
+    <div style="back-white">
+      <img :src="item.user.url" >
       <router-link :to="{ name: 'UserDetail', params: { userId: item.user.id}}">{{item.user.name}}</router-link>
       <div>{{item.title}}</div>
       <div>{{item.content}}</div>
@@ -37,5 +38,11 @@ export default {
 <style scoped>
 .post-marge {
   margin: 20px;
+}
+</style>
+
+<style scoped>
+.back-white{
+  background:white;
 }
 </style>

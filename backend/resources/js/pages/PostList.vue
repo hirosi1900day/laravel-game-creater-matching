@@ -63,5 +63,13 @@ export default {
 </script>
 
 <style scoped>
+.grid{
+    display: grid;
+    text-align: center;
+    padding:0;
+    width: 100%;
+    grid-template-columns: repeat(2, 48%);
+ }
+
 
 </style>

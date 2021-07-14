@@ -30,7 +30,7 @@ export default {
         title: "",
         content: "",
       },
-      validationCheck: false
+      submitCheck:true
     }
   },
   computed: {
@@ -40,7 +40,7 @@ export default {
         console.log(state.error.errorMessages)
         return state.error.errorMessages
       }
-    })
+    }),
   },
   methods: {
     reset () {
@@ -48,15 +48,20 @@ export default {
       this.postData.content = ""
     },
     async submit () {
-      const response = await axios.post('/api/posts', this.postData)
+      if(this.submitCheck) {
+        this.submitCheck = false
+        const response = await axios.post('/api/posts', this.postData)
       if (response.status === UNPROCESSABLE_ENTITY) {
         this.$store.commit('error/setErrorMessages', response.data.errors)
       } else {
         this.$store.commit('error/setCode', response.status)
       }
+      console.log("送信確認")
       this.reset()
+      this.submitCheck = true
       this.$router.push({name: 'PostIndex'})
+      } 
     }
-  }
+  },
 }
 </script>

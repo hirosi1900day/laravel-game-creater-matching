@@ -21,6 +21,10 @@ class PostController extends Controller
         $post = new Post();
         $post->title = $request->title;
         $post->content = $request->content;
+        $post->resources_required = $request->resources_required;
+        $post->area = $request->area;
+        $post->qualification = $request->qualification;
+        
         // データベースエラー時にファイル削除を行うため
         // トランザクションを利用する
         DB::beginTransaction();

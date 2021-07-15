@@ -26,6 +26,9 @@ class StorePost extends FormRequest
         return [
             'title' => 'required',
             'content' => 'required',
+            'resources_required' => 'required',
+            'area' => 'required',
+            'qualification' => 'required'
         ];
     }
 }

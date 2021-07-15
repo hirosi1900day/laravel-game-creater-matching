@@ -35,6 +35,7 @@ export default {
         return false
       }
       this.users = response.data
+      console.log(this.users)
     }
   },
   created: function() {

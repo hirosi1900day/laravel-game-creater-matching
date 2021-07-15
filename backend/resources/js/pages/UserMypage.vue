@@ -9,8 +9,10 @@
       <output class="form__output" v-if="preview">
         <img :src="preview" alt=""> 
       </output>
-      <input class="form__item" type="text" v-model="myUserData.name">
-      <textarea class="form__item" type="text" v-model="myUserData.self_introduce"></textarea>
+      <label for="name">名前</label>
+      <input class="form__item" type="text" v-model="myUserData.name" id="name">
+      <label for="self_introduce">自己紹介</label>
+      <textarea class="form__item" type="text" v-model="myUserData.self_introduce" id="self_introduce"></textarea>
       <div v-if="errors" class="errors">
         <ul v-if="errors.title">
           <li v-for="msg in errors.title" :key="msg">{{ msg }}</li>

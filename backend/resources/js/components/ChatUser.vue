@@ -1,9 +1,8 @@
 <template>
-  <div class="post-marge">
-    <div style="red">
-      <router-link :to="{ name: 'UserDetail', params: { userId: item.id}}">{{item.name}}</router-link>
-      <div>{{item.name}}</div>
-    </div>
+  <div class="post-marge back-white">
+    <img :src="item.url" class="image-size border-circle">
+    <router-link :to="{ name: 'UserDetail', params: { userId: item.id}}">{{item.name}}</router-link>
+    <div>{{item.name}}</div>
   </div>
 </template>
 
@@ -17,3 +16,20 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.back-white{
+  background: white;
+}
+.image-size{
+  width: 10vw;
+  height: 10vw;
+  border:3px solid ;
+  border-radius: 50%;
+  object-fit:cover;
+  border:4px solid #13b1c0;
+}
+.border-cercle{
+  border-radius: 50%;
+}
+</style>

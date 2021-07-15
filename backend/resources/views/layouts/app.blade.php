@@ -10,7 +10,7 @@
 </head>
 
 <body>  
-  @include('commons.navbar')
+  {{-- @include('commons.navbar') --}}
 
   @yield('content') 
   <div id="app"></div>

@@ -21,6 +21,10 @@ class PostController extends Controller
         $post = new Post();
         $post->title = $request->title;
         $post->content = $request->content;
+        $post->resources_required = $request->resources_required;
+        $post->area = $request->area;
+        $post->qualification = $request->qualification;
+        
         // データベースエラー時にファイル削除を行うため
         // トランザクションを利用する
         DB::beginTransaction();
@@ -62,6 +66,7 @@ class PostController extends Controller
     }
     public function myupdate(Post $post,MyPostUpdate $request)
     {
+        
         DB::beginTransaction();
         try {
             $post->title = $request->title;
@@ -73,7 +78,8 @@ class PostController extends Controller
             throw $exception;
         }
         return response($post,201);
-    }
+    }      
+  
     public function delete(Post $post) {
         $postUser = $post->user;
         DB::beginTransaction();
@@ -87,6 +93,6 @@ class PostController extends Controller
                 throw $exception;
             }
         }
-        return response(400);
+        return abort(403);
     }
 }

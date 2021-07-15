@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Storage;
 
 class User extends Authenticatable
 {
@@ -17,6 +18,11 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name', 'email', 'password',
+    ];
+
+     /** JSONに含める属性 */
+    protected $appends = [
+        'url',
     ];
 
     /**
@@ -79,6 +85,18 @@ class User extends Authenticatable
         } else {
             return false;
         }
+    }
+
+     /**
+     * アクセサ - image_location
+     * @return string
+     */
+    public function getUrlAttribute()
+    {
+        if(!$this->image_location){
+            return "" ;
+        }
+        return Storage::disk('s3')->url($this->image_location);
     }
 }
 

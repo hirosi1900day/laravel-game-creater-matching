@@ -8,6 +8,11 @@ use Illuminate\Http\Request;
 
 class FavoriteController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function store(Request $request) {
         \Auth::user()->favorite($request->postId);
         return response(201);

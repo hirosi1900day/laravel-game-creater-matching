@@ -9,8 +9,10 @@
       <output class="form__output" v-if="preview">
         <img :src="preview" alt=""> 
       </output>
-      <input class="form__item" type="text" v-model="myUserData.name">
-      <textarea class="form__item" type="text" v-model="myUserData.self_introduce"></textarea>
+      <label for="name">名前</label>
+      <input class="form__item" type="text" v-model="myUserData.name" id="name">
+      <label for="self_introduce">自己紹介</label>
+      <textarea class="form__item" type="text" v-model="myUserData.self_introduce" id="self_introduce"></textarea>
       <div v-if="errors" class="errors">
         <ul v-if="errors.title">
           <li v-for="msg in errors.title" :key="msg">{{ msg }}</li>
@@ -70,7 +72,7 @@ export default {
         // previewに値が入ると<output>につけたv-ifがtrueと判定される
         // また<output>内部の<img>のsrc属性はpreviewの値を参照しているので
         // 結果として画像が表示される
-        this.preview = e.target.result
+        this.preview.file = e.target.result
       }
       // ファイルを読み込む
       // 読み込まれたファイルはデータURL形式で受け取れる（上記onload参照）
@@ -104,6 +106,7 @@ export default {
       formData.append('name',this.myUserData.name)
       formData.append('self_introduce',this.myUserData.self_introduce)
       formData.append('user_id',this.$store.state.auth.user.id)
+      formData.append('myUserData', this.myUserData)
 
       this.myUserData.user_id = this.$store.state.auth.user.id
       const headers = { "content-type": "multipart/form-data" }

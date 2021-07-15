@@ -27,7 +27,7 @@ export default {
     return {
       posts: [],
       currentPage: 0,
-      lastPage: 0
+      lastPage: 0,
     }
   },
   props: {
@@ -38,7 +38,7 @@ export default {
     }
   },
   methods: {
-    async fetchPhotos () {
+    async fetchPosts () {
       const response = await axios.get(`/api/posts?page=${this.page}`)
       if (response.status !== OK) {
         this.$store.commit('error/setCode', response.status)
@@ -54,7 +54,7 @@ export default {
   watch: {
     $route: {
       async handler () {
-        await this.fetchPhotos()
+        await this.fetchPosts()
       },
       immediate: true
     }
@@ -63,5 +63,13 @@ export default {
 </script>
 
 <style scoped>
+.grid{
+    display: grid;
+    text-align: center;
+    padding:0;
+    width: 100%;
+    grid-template-columns: repeat(2, 48%);
+ }
+
 
 </style>

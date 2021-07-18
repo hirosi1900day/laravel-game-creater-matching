@@ -7,8 +7,6 @@
         :key="user.id"
         :item="user"
       />
-      <h1>UserIndex確認
-      </h1>
     </div>
   </div>
 </template>

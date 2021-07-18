@@ -9,10 +9,15 @@
       <output class="form__output" v-if="preview">
         <img :src="preview" alt=""> 
       </output>
-      <label for="name">名前</label>
-      <input class="form__item" type="text" v-model="myUserData.name" id="name">
-      <label for="self_introduce">自己紹介</label>
-      <textarea class="form__item" type="text" v-model="myUserData.self_introduce" id="self_introduce"></textarea>
+      <li class="list-style m-2">
+        <label for="name py-2 block">名前</label>
+        <textarea class="form__item border-2 border-green-300 block" type="text" v-model="myUserData.name" id="name"></textarea>
+      </li>
+      <li class="list-style m-2">
+        <label for="self_introduce py-2 block">自己紹介</label>
+        <textarea class="form__item border-2 border-green-300 block" type="text" v-model="myUserData.self_introduce" id="self_introduce"></textarea>
+      </li>
+      
       <div v-if="errors" class="errors">
         <ul v-if="errors.title">
           <li v-for="msg in errors.title" :key="msg">{{ msg }}</li>
@@ -22,7 +27,7 @@
         </ul>
       </div>
       <div class="form__button">
-        <button>変更する</button>
+        <button class="bg-green-300 rounded-xl p-2 m-2">変更する</button>
       </div>
     </form>
   </div>
@@ -48,7 +53,6 @@ export default {
     ...mapState({
       errors: state => 
       { 
-        console.log(state.error.errorMessages)
         return state.error.errorMessages
       }
     })
@@ -79,8 +83,6 @@ export default {
       reader.readAsDataURL(event.target.files[0])
       // this.myUserData.file = event.target.files[0]
       this.myUserData.file = event.target.files[0]
-      console.log("写真確認")
-      console.log(this.myUserData.file)
     },
     reset () {
     this.preview = ''
@@ -126,3 +128,9 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.list-style{
+  list-style: none;
+}
+</style>

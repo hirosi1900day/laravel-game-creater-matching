@@ -42,20 +42,20 @@ class UserController extends Controller
         $user->self_introduce = $request->self_introduce;
         $path = "";
 
-        if($file = $request->file) {
+        if($file = $request->file && $request->file != "null") {
+        
             if($user->image_loccation){
                 //新規登録
                 //保存するファイルに名前をつける 
                 $fileName = time().'.'.$file->getClientOriginalExtension();
                 $path = Storage::disk('s3')->putFileAs('/userImage',$file, $fileName,'public');
                 $user->image_location = $path;
-
             } else {
                 //アップデート
                 //保存するファイルに名前をつける
                 Storage::disk('s3')->delete($user->image_location);
-                $fileName = time().'.'.$file->getClientOriginalExtension();
-                $path = Storage::disk('s3')->putFileAs('/userImage',$file, $fileName,'public');
+                $fileName = time().'.'.$request->file->getClientOriginalExtension();
+                $path = Storage::disk('s3')->putFileAs('/userImage',$request->file, $fileName,'public');
                 $user->image_location = $path;
             }
         }

@@ -1,16 +1,24 @@
 <template>
   <div>
-    <div>テスト</div>
-    <div>{{partnerUserId}}</div>
-    <h1>メッセージ</h1>
+    <div>{{getMessageData.user.name}}さんとのチャットルーム</div>
     <div
-        v-for="message in getMessageData.message"
-        :key="message.id"
-      >{{message.message}}</div>
-     <form class="form" @submit.prevent="submit">
-      <input class="form__item" type="text" v-model="sendMessageData.message">
-      <div class="form__button">
-        <button>submit</button>
+    v-for="message in getMessageData.message"
+    :key="message.id"
+    >
+      <div v-if="message.user_id == partnerUserId" class="bg-blue-300 p-2 rounded-xl m-2">
+        <div class="font-bold">相手</div>
+        <div class="whitespace-pre">{{message.message}}</div>
+      </div>
+      <div v-else class="bg-green-300 p-2 rounded-xl m-2">
+        <div class="font-bold">あなた</div>
+        <div class="whitespace-pre">{{message.message}}</div>
+      </div>
+
+    </div>
+     <form class="form fixed bottom-1 w-5/6 flex" @submit.prevent="submit">
+      <textarea class="form__item flex-1 border-2 border-green-300" type="text" v-model="sendMessageData.message"></textarea>
+      <div class="form__button flex-none">
+        <button class="bg-green-300 p-2 m-2 rounded-lg">送信</button>
       </div>
     </form>
   </div>
@@ -18,7 +26,7 @@
 
 <script>
 import {OK,CREATED,UNPROCESSABLE_ENTITY} from '../util.js'
-
+import {mapState} from "vuex"
 
 export default {
   data () {
@@ -28,6 +36,7 @@ export default {
         user_id: -1,
       },
        getMessageData: [],
+       authUser: [],
     }
   },
   props: ['partnerUserId'],
@@ -64,8 +73,14 @@ export default {
       
     }
   },
+  computed: function() {
+    mapState({
+      authUser: state =>state.user
+    })
+  },
   created: function() {
     this.fetchChatRoom()
+    console.log(this.authUser)
   }
 }
 </script>

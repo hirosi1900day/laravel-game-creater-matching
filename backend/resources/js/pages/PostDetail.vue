@@ -1,20 +1,25 @@
 <template>
   <div>
-    <div class="post-marge back-white">
-      <div>{{post.post.title}}</div>
-      <div>{{post.post.content}}</div>
-      <div>{{post.post.resources_required}}</div>
-      <div>{{post.post.qualification}}</div>
-      <div>{{post.post.area}}</div>
+    <div class="shadow-x rounded-xl bg-white p-5 m-2">
+      <div class=" text-gray-600 leading-tight text-lg  lg:text-xl xl:text:2xl font-bold">{{post.post.title}}</div>
+      <div class="border-b-2">▽こんなことしたいです</div>
+      <div class="text-xs text-grey-600 leading-normal md:text-sm lg:text-base xl:text:lg">{{post.post.content}}</div>
+      <div class="border-b-2">▽こんな人を求めています</div>
+      <div class="text-xs text-grey-600 leading-normal md:text-sm lg:text-base xl:text:lg">{{post.post.resources_required}}</div>
+      <div class="border-b-2">▽応募資格</div>
+      <div class="text-xs text-grey-600 leading-normal md:text-sm lg:text-base xl:text:lg">{{post.post.qualification}}</div>
+       <div class="border-b-2">▽募集エリア</div>
+      <div class="text-xs text-grey-600 leading-normal md:text-sm lg:text-base xl:text:lg">{{post.post.area}}</div>
     </div>
-    <div>
-      <router-link :to="{ name: 'ChatRoom', params: { partnerUserId: post.user.id}}">チャットでメッセージを送る</router-link>
+    <div class="p-2 m-2">
+      <router-link :to="{ name: 'ChatRoom', params: { partnerUserId: post.user.id}}" class="bg-green-300 p-2 rounded-xl">チャットでメッセージを送る</router-link>
     </div>
-    <div class="post-marge back-white">
-       <router-link :to="{ name: 'UserDetail', params: { userId: post.user.id}}">{{post.user.name}}</router-link>
-      <img :src="post.post.user.url" class="image-size">
+    <div class="shadow-x rounded-xl bg-white p-5 m-2">
+       <router-link class="text-gray-600 leading-tight text-lg  lg:text-xl xl:text:2xl font-bold m-2" :to="{ name: 'UserDetail', params: { userId: post.user.id}}">{{post.user.name}}</router-link>
+      <img :src="post.post.user.url" class="image-size border-2 border-green-300 m-2">
       <Favorite
       :postId="post.post.id"
+      class="m-2"
       />
     </div>
   </div>
@@ -52,21 +57,11 @@ export default {
 </script>
 
 <style scoped>
-.post-marge {
-  margin: 20px;
-}
-.back-white{
-  background:white;
-}
 .image-size{
-  width: 10vw;
-  height: 10vw;
+  width: 13vw;
+  height: 13vw;
   border:3px solid ;
   border-radius: 50%;
   object-fit:cover;
-  border:4px solid #13b1c0;
-}
-.border-cercle{
-  border-radius: 50%;
 }
 </style>

@@ -1,9 +1,10 @@
+
+<script>
 import PostList from '../pages/PostList.vue'
 import PostForm from '../pages/PostForm.vue'
 
 export default {
   path: '/post',
-  component: Company,
   children: [
     {
       path: 'index',
@@ -21,3 +22,4 @@ export default {
     },
   ]
 }
+</script>

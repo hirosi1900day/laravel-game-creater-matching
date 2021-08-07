@@ -21,6 +21,9 @@ Route::get('login', 'Auth\LoginController@showLoginForm')->name('login.get');
 Route::post('login', 'Auth\LoginController@login')->name('login');
 Route::get('logout', 'Auth\LoginController@logout')->name('logout');
 
+//メール認証
+Route::get('register/verify/{token}', 'Auth\RegisterController@showForm');
+
 
 //Admin 認証不要
 Route::group(['prefix' => 'admin'], function() {

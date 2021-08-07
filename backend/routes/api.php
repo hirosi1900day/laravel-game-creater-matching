@@ -17,6 +17,12 @@ Route::get('/user', function () {
     return Auth::user();
 });
 
+Route::get('/reflesh-token', function (Illuminate\Http\Request $request) {
+    $request->session()->regenerateToken();
+
+    return response()->json();
+});
+
 Route::prefix('posts')->group(function () {
     // 投稿作成
     Route::post('/', 'PostController@create')->name('post.create');

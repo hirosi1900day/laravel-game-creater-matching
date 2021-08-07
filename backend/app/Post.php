@@ -10,7 +10,7 @@ class Post extends Model
 
   
 
-    protected $perPage = 5;
+    protected $perPage = 8;
     
     public function user()
     {

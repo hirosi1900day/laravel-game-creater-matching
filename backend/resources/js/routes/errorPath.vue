@@ -1,8 +1,10 @@
 //エラーハンドリング
+<script>
+
 import SystemError from '../pages/errors/System.vue'
 
 export default {
- { path: '/401', redirect: to => {
+  { path: '/401', redirect: to => {
     return window.location.href = "/login"
   }},
   {
@@ -10,3 +12,4 @@ export default {
     component: SystemError
   },
 }
+</script>

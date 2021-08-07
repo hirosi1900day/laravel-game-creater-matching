@@ -3651,6 +3651,41 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/routes/postPath.vue?vue&type=script&lang=js&":
+/*!***************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/routes/postPath.vue?vue&type=script&lang=js& ***!
+  \***************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _pages_PostList_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../pages/PostList.vue */ "./resources/js/pages/PostList.vue");
+/* harmony import */ var _pages_PostForm_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../pages/PostForm.vue */ "./resources/js/pages/PostForm.vue");
+//
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  path: '/post',
+  children: [{
+    path: 'index',
+    component: _pages_PostList_vue__WEBPACK_IMPORTED_MODULE_0__["default"],
+    name: 'PostIndex',
+    props: function props(route) {
+      var page = route.query.page;
+      return {
+        page: /^[1-9][0-9]*$/.test(page) ? page * 1 : 1
+      };
+    }
+  }, {
+    path: 'create',
+    component: _pages_PostForm_vue__WEBPACK_IMPORTED_MODULE_1__["default"],
+    name: 'PostForm'
+  }]
+});
+
+/***/ }),
+
 /***/ "./node_modules/bootstrap/dist/js/bootstrap.js":
 /*!*****************************************************!*\
   !*** ./node_modules/bootstrap/dist/js/bootstrap.js ***!
@@ -41497,10 +41532,10 @@ var render = function() {
         ? _c(
             "RouterLink",
             {
-              staticClass: "button",
+              staticClass: "bg-green-300 p-2 m-2",
               attrs: { to: "/post/index?page=" + (_vm.currentPage - 1) }
             },
-            [_vm._v("« prev")]
+            [_vm._v("« 戻る")]
           )
         : _vm._e(),
       _vm._v(" "),
@@ -41508,10 +41543,10 @@ var render = function() {
         ? _c(
             "RouterLink",
             {
-              staticClass: "button",
+              staticClass: "bg-green-300 p-2 m-2",
               attrs: { to: "/post/index?page=" + (_vm.currentPage + 1) }
             },
-            [_vm._v("next »")]
+            [_vm._v("次へ »")]
           )
         : _vm._e()
     ],
@@ -60937,18 +60972,20 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var vue_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue-router */ "./node_modules/vue-router/dist/vue-router.esm.js");
-/* harmony import */ var _pages_PostList_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./pages/PostList.vue */ "./resources/js/pages/PostList.vue");
-/* harmony import */ var _pages_PostForm_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./pages/PostForm.vue */ "./resources/js/pages/PostForm.vue");
-/* harmony import */ var _pages_PostMypage_vue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./pages/PostMypage.vue */ "./resources/js/pages/PostMypage.vue");
-/* harmony import */ var _pages_PostDetail_vue__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./pages/PostDetail.vue */ "./resources/js/pages/PostDetail.vue");
-/* harmony import */ var _pages_PostMypageDetail_vue__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./pages/PostMypageDetail.vue */ "./resources/js/pages/PostMypageDetail.vue");
-/* harmony import */ var _pages_UserIndex_vue__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./pages/UserIndex.vue */ "./resources/js/pages/UserIndex.vue");
-/* harmony import */ var _pages_UserDetail_vue__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./pages/UserDetail.vue */ "./resources/js/pages/UserDetail.vue");
-/* harmony import */ var _pages_UserMypage_vue__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./pages/UserMypage.vue */ "./resources/js/pages/UserMypage.vue");
-/* harmony import */ var _pages_ChatRoom_vue__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./pages/ChatRoom.vue */ "./resources/js/pages/ChatRoom.vue");
-/* harmony import */ var _pages_ChatIndex_vue__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./pages/ChatIndex.vue */ "./resources/js/pages/ChatIndex.vue");
-/* harmony import */ var _store__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./store */ "./resources/js/store/index.js");
-/* harmony import */ var _pages_errors_System_vue__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./pages/errors/System.vue */ "./resources/js/pages/errors/System.vue");
+/* harmony import */ var _routes_postPath_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./routes/postPath.vue */ "./resources/js/routes/postPath.vue");
+/* harmony import */ var _pages_PostList_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./pages/PostList.vue */ "./resources/js/pages/PostList.vue");
+/* harmony import */ var _pages_PostForm_vue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./pages/PostForm.vue */ "./resources/js/pages/PostForm.vue");
+/* harmony import */ var _pages_PostMypage_vue__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./pages/PostMypage.vue */ "./resources/js/pages/PostMypage.vue");
+/* harmony import */ var _pages_PostDetail_vue__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./pages/PostDetail.vue */ "./resources/js/pages/PostDetail.vue");
+/* harmony import */ var _pages_PostMypageDetail_vue__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./pages/PostMypageDetail.vue */ "./resources/js/pages/PostMypageDetail.vue");
+/* harmony import */ var _pages_UserIndex_vue__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./pages/UserIndex.vue */ "./resources/js/pages/UserIndex.vue");
+/* harmony import */ var _pages_UserDetail_vue__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./pages/UserDetail.vue */ "./resources/js/pages/UserDetail.vue");
+/* harmony import */ var _pages_UserMypage_vue__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./pages/UserMypage.vue */ "./resources/js/pages/UserMypage.vue");
+/* harmony import */ var _pages_ChatRoom_vue__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./pages/ChatRoom.vue */ "./resources/js/pages/ChatRoom.vue");
+/* harmony import */ var _pages_ChatIndex_vue__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./pages/ChatIndex.vue */ "./resources/js/pages/ChatIndex.vue");
+/* harmony import */ var _store__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./store */ "./resources/js/store/index.js");
+/* harmony import */ var _pages_errors_System_vue__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./pages/errors/System.vue */ "./resources/js/pages/errors/System.vue");
+
 
  // ページコンポーネントをインポートする
 
@@ -60976,7 +61013,7 @@ var routes = [{
   }
 }, {
   path: '/500',
-  component: _pages_errors_System_vue__WEBPACK_IMPORTED_MODULE_13__["default"]
+  component: _pages_errors_System_vue__WEBPACK_IMPORTED_MODULE_14__["default"]
 }, {
   path: '/signIn',
   redirect: function redirect(to) {
@@ -60987,7 +61024,7 @@ var routes = [{
   redirect: '/post/index'
 }, {
   path: '/post/index',
-  component: _pages_PostList_vue__WEBPACK_IMPORTED_MODULE_2__["default"],
+  component: _pages_PostList_vue__WEBPACK_IMPORTED_MODULE_3__["default"],
   name: 'PostIndex',
   props: function props(route) {
     var page = route.query.page;
@@ -60997,19 +61034,19 @@ var routes = [{
   }
 }, {
   path: '/post/create',
-  component: _pages_PostForm_vue__WEBPACK_IMPORTED_MODULE_3__["default"],
+  component: _pages_PostForm_vue__WEBPACK_IMPORTED_MODULE_4__["default"],
   name: 'PostForm'
 }, {
   path: '/post/detail/:postId',
-  component: _pages_PostDetail_vue__WEBPACK_IMPORTED_MODULE_5__["default"],
+  component: _pages_PostDetail_vue__WEBPACK_IMPORTED_MODULE_6__["default"],
   name: 'PostDetail',
   props: true
 }, {
   path: '/post/mypage',
-  component: _pages_PostMypage_vue__WEBPACK_IMPORTED_MODULE_4__["default"],
+  component: _pages_PostMypage_vue__WEBPACK_IMPORTED_MODULE_5__["default"],
   name: 'PostMypage',
   beforeEnter: function beforeEnter(to, from, next) {
-    if (!_store__WEBPACK_IMPORTED_MODULE_12__["default"].getters['auth/check']) {
+    if (!_store__WEBPACK_IMPORTED_MODULE_13__["default"].getters['auth/check']) {
       next('/signIn');
     }
 
@@ -61017,11 +61054,11 @@ var routes = [{
   }
 }, {
   path: '/post/mypage/detail/:postId',
-  component: _pages_PostMypageDetail_vue__WEBPACK_IMPORTED_MODULE_6__["default"],
+  component: _pages_PostMypageDetail_vue__WEBPACK_IMPORTED_MODULE_7__["default"],
   name: 'PostMypageDetail',
   props: true,
   beforeEnter: function beforeEnter(to, from, next) {
-    if (!_store__WEBPACK_IMPORTED_MODULE_12__["default"].getters['auth/check']) {
+    if (!_store__WEBPACK_IMPORTED_MODULE_13__["default"].getters['auth/check']) {
       next('/signIn');
     }
 
@@ -61029,20 +61066,20 @@ var routes = [{
   }
 }, {
   path: '/user/index',
-  component: _pages_UserIndex_vue__WEBPACK_IMPORTED_MODULE_7__["default"],
+  component: _pages_UserIndex_vue__WEBPACK_IMPORTED_MODULE_8__["default"],
   name: "UserIndex"
 }, {
   //userの詳細画面
   path: '/user/detail/:userId',
-  component: _pages_UserDetail_vue__WEBPACK_IMPORTED_MODULE_8__["default"],
+  component: _pages_UserDetail_vue__WEBPACK_IMPORTED_MODULE_9__["default"],
   name: 'UserDetail',
   props: true
 }, {
   path: '/user/mypage',
-  component: _pages_UserMypage_vue__WEBPACK_IMPORTED_MODULE_9__["default"],
+  component: _pages_UserMypage_vue__WEBPACK_IMPORTED_MODULE_10__["default"],
   name: "Mypage",
   beforeEnter: function beforeEnter(to, from, next) {
-    if (!_store__WEBPACK_IMPORTED_MODULE_12__["default"].getters['auth/check']) {
+    if (!_store__WEBPACK_IMPORTED_MODULE_13__["default"].getters['auth/check']) {
       next('/signIn');
     }
 
@@ -61050,11 +61087,11 @@ var routes = [{
   }
 }, {
   path: '/chat/index',
-  component: _pages_ChatIndex_vue__WEBPACK_IMPORTED_MODULE_11__["default"],
+  component: _pages_ChatIndex_vue__WEBPACK_IMPORTED_MODULE_12__["default"],
   name: 'ChatIndex',
   props: true,
   beforeEnter: function beforeEnter(to, from, next) {
-    if (!_store__WEBPACK_IMPORTED_MODULE_12__["default"].getters['auth/check']) {
+    if (!_store__WEBPACK_IMPORTED_MODULE_13__["default"].getters['auth/check']) {
       next('/signIn');
     }
 
@@ -61062,11 +61099,11 @@ var routes = [{
   }
 }, {
   path: '/chat/room/:partnerUserId',
-  component: _pages_ChatRoom_vue__WEBPACK_IMPORTED_MODULE_10__["default"],
+  component: _pages_ChatRoom_vue__WEBPACK_IMPORTED_MODULE_11__["default"],
   name: 'ChatRoom',
   props: true,
   beforeEnter: function beforeEnter(to, from, next) {
-    if (!_store__WEBPACK_IMPORTED_MODULE_12__["default"].getters['auth/check']) {
+    if (!_store__WEBPACK_IMPORTED_MODULE_13__["default"].getters['auth/check']) {
       next('/signIn');
     }
 
@@ -61085,6 +61122,56 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
   routes: routes
 });
 /* harmony default export */ __webpack_exports__["default"] = (router);
+
+/***/ }),
+
+/***/ "./resources/js/routes/postPath.vue":
+/*!******************************************!*\
+  !*** ./resources/js/routes/postPath.vue ***!
+  \******************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _postPath_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./postPath.vue?vue&type=script&lang=js& */ "./resources/js/routes/postPath.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+var render, staticRenderFns
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_1__["default"])(
+  _postPath_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"],
+  render,
+  staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/routes/postPath.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/routes/postPath.vue?vue&type=script&lang=js&":
+/*!*******************************************************************!*\
+  !*** ./resources/js/routes/postPath.vue?vue&type=script&lang=js& ***!
+  \*******************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_postPath_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./postPath.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/routes/postPath.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_postPath_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
 
 /***/ }),
 

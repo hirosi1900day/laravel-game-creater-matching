@@ -1,6 +1,8 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 
+import postRoute from './routes/postPath.vue'
+
 // ページコンポーネントをインポートする
 import PostList from './pages/PostList.vue'
 import PostForm from './pages/PostForm.vue'
@@ -23,6 +25,7 @@ Vue.use(VueRouter)
 
 // パスとコンポーネントのマッピング
 const routes = [
+ 
   { path: '/401', redirect: to => {
     return window.location.href = "/login"
   }},

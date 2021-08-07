@@ -7,7 +7,6 @@
         :key="post.id"
         :item="post"
       />
-      <h1>テスト</h1>
       <Pagination :current-page="currentPage" :last-page="lastPage" />
     </div>
   </div>

@@ -11,4 +11,6 @@ return[
     'resources_required_array'=>[
         '選択してください','エンジニア','デザインナー',
         '営業','企画','マーケター','その他'],
+        
+    'USER_STATUS' => ['PRE_REGISTER' => '0', 'REGISTER' => '1', 'MAIL_AUTHED' => '2', 'DEACTIVE' => '9',],
 ];

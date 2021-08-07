@@ -1,8 +1,7 @@
 <template>
-  <div class="post-marge back-white">
-    <img :src="item.url" class="image-size border-circle">
+  <div class="bg-white p-2 shadow">
+    <img :src="item.url" class="image-size border-2 border-green-300">
     <router-link :to="{ name: 'UserDetail', params: { userId: item.id}}">{{item.name}}</router-link>
-    <div>{{item.name}}</div>
   </div>
 </template>
 
@@ -28,8 +27,5 @@ export default {
   border-radius: 50%;
   object-fit:cover;
   border:4px solid #13b1c0;
-}
-.border-cercle{
-  border-radius: 50%;
 }
 </style>

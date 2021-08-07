@@ -3,13 +3,11 @@
   <div class="photo-list">
     <div class="grid">
       <ChatUser
-        class="grid__item"
+        class="grid__item p-2 m-2"
         v-for="user in users.user"
         :key="user.id"
         :item="user"
       />
-      <h1>chatIndex確認
-      </h1>
     </div>
   </div>
 </template>

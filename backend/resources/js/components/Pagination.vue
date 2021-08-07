@@ -3,13 +3,13 @@
     <RouterLink
       v-if="! isFirstPage"
       :to="`/post/index?page=${currentPage - 1}`"
-      class="button"
-    >&laquo; prev</RouterLink>
+      class="bg-green-300 p-2 m-2"
+    >&laquo; 戻る</RouterLink>
     <RouterLink
       v-if="! isLastPage"
       :to="`/post/index?page=${currentPage + 1}`"
-      class="button"
-    >next &raquo;</RouterLink>
+      class="bg-green-300 p-2 m-2"
+    >次へ &raquo;</RouterLink>
   </div>
 </template>
 

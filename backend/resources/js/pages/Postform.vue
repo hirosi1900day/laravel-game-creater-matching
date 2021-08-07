@@ -1,42 +1,46 @@
 <template>
   <div class="photo-form">
     <h2 class="title">投稿</h2>
-    <form class="form" @submit.prevent="submit">    
-    <ul>
-      <li class="text-decoration">
-        <label for="title">タイトル</label>
-        <input class="form__item" type="text"  id="title" v-model="postData.title">
-      </li>
-      <li class="text-decroation">
-        <label for="content">内容</label>
-        <input class="form__item" type="text" id="content" v-model="postData.content">
-      </li>
-      <li class="text-decoration">
-         <label for="resources_required">募集分野</label>
-         <input class="form__item" type="text" id="resources_required" v-model="postData.resources_required">
-      </li>
-      <li class="text-decoration">
-         <label for="resources_required">募集分野</label>
-         <input class="form__item" type="text" id="resources_required" v-model="postData.resources_required">
-      </li>
-      <li class="text-decoration">
-      <label for="qualification">応募資格</label>
-      <input class="form__item" type="text" id="qualification" v-model="postData.qualification">
-      </li>
-      <li class="text-decoration">
-        <label for="area">募集地域</label>
-        <input class="form__item" type="text" id="area" v-model="postData.area">
-      </li>
-    </ul>
-      <div v-if="errors" class="errors">
-        <ul v-if="errors">
-          <li v-for="msg in errors" :key="msg[0]">{{ msg[0] }}</li>
+    <div>
+      <div class="back-white marge shadow p-2">
+        <form class="form" @submit.prevent="submit">    
+        <ul>
+          <li class="list-style m-2">
+            <label for="title">タイトル</label>
+            <textarea class="form__item" type="text"  id="title" v-model="postData.title"></textarea>
+          </li>
+          <li class="list-style m-2">
+            <label for="content">内容</label>
+            <textarea class="form__item border-2 border-green-300" type="text" id="content" v-model="postData.content"></textarea>
+          </li>
+          <li class="list-style m-2">
+            <label for="resources_required">募集分野</label>
+            <textarea class="form__item border-2 border-green-300" type="text" id="resources_required" v-model="postData.resources_required"></textarea>
+          </li>
+          <li class="list-style m-2">
+            <label for="resources_required">募集分野</label>
+            <textarea class="form__item border-2 border-green-300" type="text" id="resources_required" v-model="postData.resources_required"></textarea>
+          </li>
+          <li class="list-style m-2">
+            <label for="qualification">応募資格</label>
+            <textarea class="form__item border-2 border-green-300" type="text" id="qualification" v-model="postData.qualification"></textarea>
+          </li>
+          <li class="list-style m-2">
+            <label for="area">募集地域</label>
+            <input class="form__item border-2 border-green-300" type="text" id="area" v-model="postData.area">
+           </li>
         </ul>
-      </div>
-      <div class="form__button">
-        <button>submit</button>
-      </div>
-    </form>
+        <div v-if="errors" class="errors">
+          <ul v-if="errors">
+            <li v-for="msg in errors" :key="msg[0]">{{ msg[0] }}</li>
+          </ul>
+        </div>
+        <div class="form__button m-2">
+          <button class="btn-gradation">投稿</button>
+        </div>
+      </form>
+    </div>
+    </div>
   </div>
 </template>
 
@@ -95,8 +99,15 @@ export default {
   },
 }
 </script>
+
 <style scoped>
-.text-decoration{
-  text-decoration: none;
+.list-style{
+  list-style: none;
+}
+.margin{
+  margin: 20px;
+}
+.back-white{
+  background: white;
 }
 </style>

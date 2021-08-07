@@ -1,9 +1,9 @@
 <template>
    <div>
-       <button v-if="status == false" @click.prevent="favorite">
+       <button v-if="status == false" @click.prevent="favorite" class="bg-green-300 p-2 rounded-xl">
           <div>気になる</div>
        </button>
-       <button v-else @click.prevent="unfavorite">
+       <button v-else @click.prevent="unfavorite" class="bg-pink-400 p-2 rounded-xl">
           <div>気になるを解除</div>
        </button>
     </div>

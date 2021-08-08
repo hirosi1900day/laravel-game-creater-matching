@@ -71,13 +71,12 @@
     </div>
     <div class="container px-5 py-24 mx-auto flex">
       <div class="lg:w-1/3 md:w-1/2 bg-white rounded-lg p-8 flex flex-col md:ml-auto w-full mt-10 md:mt-0 relative z-10 shadow-md">
-        <h2 class="text-gray-900 text-lg mb-1 font-medium title-font">Feedback</h2>
-        <p class="leading-relaxed mb-5 text-gray-600">Post-ironic portland shabby chic echo park, banjo fashion axe</p>
-    
+        <h2 class="text-gray-900 text-lg mb-1 font-medium title-font">会員登録ページ</h2>
+        <p class="leading-relaxed mb-5 text-gray-600">こちらより仮登録を進めてください</p>
         <form method="POST" action="{{ route('register') }}" name="form">
             @csrf
           <div class="relative mb-4">
-            <label for="email" class="leading-7 text-sm text-gray-600">Email</label>
+            <label for="email" class="leading-7 text-sm text-gray-600">メールアドレス</label>
             <input id="email" type="email" name="email" value="{{ old('email') }}" required autocomplete="email" class="form-control @error('email') is-invalid @enderror w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
 
 
@@ -88,7 +87,7 @@
             @enderror
           </div>
           <div class="relative mb-4">
-            <label for="password" class="leading-7 text-sm text-gray-600">password</label>
+            <label for="password" class="leading-7 text-sm text-gray-600">パスワード</label>
             <input id="password" type="password" name="password" value="{{ old('password') }}" required autocomplete="password" class="form-control @error('password') is-invalid @enderror w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
 
 
@@ -100,7 +99,7 @@
           </div>
 
           <div class="relative mb-4">
-            <label for="password_confirm" class="leading-7 text-sm text-gray-600">password_confirm</label>
+            <label for="password_confirm" class="leading-7 text-sm text-gray-600">パスワード確認</label>
             <input id="password_confirm" type="password" name="password_confirmation" value="{{ old('password_confirm') }}" required autocomplete="password_confirm" class="form-control @error('password_confirm') is-invalid @enderror w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
 
 
@@ -112,8 +111,6 @@
           </div>
         </form>
         <button class="text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg" type="button" id="submitButton">Button</button>
-        <p class="text-xs text-gray-500 mt-3">Chicharrones blog helvetica normcore iceland tousled brook viral artisan.</p>
-        
       </div>
     </div>
   </section>

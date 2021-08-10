@@ -1,26 +1,4 @@
 <template>
-  
-  <!-- <div class="shadow-x rounded-lg bg-white p-1 m-2 shadow">
-    <div class="flex border-b-2">
-      <img :src="item.user.url" class="image-size rounded-ful flex-initial border-0 border-green-300">
-      <router-link :to="{ name: 'UserDetail', params: { userId: item.user.id}}" class=" text-green-600 leading-tight text-base  lg:text-lg xl:text:xl flex-initial py-1 m-2">{{item.user.name}}</router-link>
-    </div>
-    <router-link class="m-2 p-2" :to="{ name: 'PostDetail', params: { postId: item.id}}">
-      <div v-if="item.title.length<10" class="text-grey-600 leading-normal text-base  lg:text-lg xl:text:xl font-bold my-2 whitespace-pre">{{item.title}}</div>
-      <div v-else class="text-grey-600 leading-normal text-base  lg:text-lg xl:text:xl font-bold my-2 whitespace-pre">{{item.title.substring(0,9)+".."}}</div>
-
-      <div v-if="item.content.length<20" class="text-xs text-grey-600 leading-normal md:text-sm lg:text-base xl:text:lg whitespace-pre">{{item.content}}</div> 
-      <div v-else class="text-xs text-grey-600 leading-normal md:text-sm lg:text-base xl:text:lg whitespace-pre">{{item.content.substring(0,19)+".."}}</div> 
-
-    </router-link> 
-    <Favorite
-        class="m-2 p2"
-        v-if="authCheck"
-        :postId="item.id"
-      />
-      
-    
-  </div> -->
 
   <section class="text-gray-600 body-font overflow-hidden">
    <div class="container px-5 py-24 mx-auto">
@@ -29,13 +7,13 @@
          <span class="inline-block py-1 px-2 rounded bg-indigo-50 text-indigo-500 text-xs font-medium tracking-widest">CATEGORY</span>
          <!-- title -->
          <h2 class="sm:text-3xl text-2xl title-font font-medium text-gray-900 mt-4 mb-4">
-          <div v-if="item.title.length<10">{{item.title}}</div>
-          <div v-else >{{item.title.substring(0,9)+".."}}</div>
+          <div v-if="item.title.length<30">{{item.title}}</div>
+          <div v-else >{{item.title.substring(0,29)+".."}}</div>
          </h2>
          <!-- content -->
          <p class="leading-relaxed mb-8">
-           <div v-if="item.content.length<20">{{item.content}}</div> 
-           <div v-else>{{item.content.substring(0,19)+".."}}</div> 
+           <div v-if="item.content.length<100">{{item.content}}</div> 
+           <div v-else>{{item.content.substring(0,98)+".."}}</div> 
          </p>
          <div class="flex items-center flex-wrap pb-4 mb-4 border-b-2 border-gray-100 mt-auto w-full">
            <router-link class="text-indigo-500 inline-flex items-center" :to="{ name: 'PostDetail', params: { postId: item.id}}">詳しくみる
@@ -45,12 +23,7 @@
              </svg>
            </router-link>
            <span class="text-gray-400 mr-3 inline-flex items-center ml-auto leading-none text-sm pr-3 py-1 border-r-2 border-gray-200">
-             <!-- <svg class="w-4 h-4 mr-1" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
-               <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
-               <circle cx="12" cy="12" r="3"></circle>
-             </svg>確認数 -->
              <Favorite
-             
              v-if="authCheck"
              :postId="item.id"
              />

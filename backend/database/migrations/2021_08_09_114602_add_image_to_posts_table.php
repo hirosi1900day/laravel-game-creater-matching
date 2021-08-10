@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddColumnsEmailVarifidUsersTable extends Migration
+class AddImageToPostsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,8 @@ class AddColumnsEmailVarifidUsersTable extends Migration
      */
     public function up()
     {
-        Schema::table('user', function (Blueprint $table) {
-            $table->('status')->default(0);
+        Schema::table('posts', function (Blueprint $table) {
+            $table->string('image')->nullable();
         });
     }
 
@@ -25,8 +25,8 @@ class AddColumnsEmailVarifidUsersTable extends Migration
      */
     public function down()
     {
-        Schema::table('user', function (Blueprint $table) {
-            //
+        Schema::table('posts', function (Blueprint $table) {
+            $table->dropColumn('image');
         });
     }
 }

@@ -13,4 +13,7 @@ return[
         '営業','企画','マーケター','その他'],
         
     'USER_STATUS' => ['PRE_REGISTER' => '0', 'REGISTER' => '1', 'MAIL_AUTHED' => '2', 'DEACTIVE' => '9',],
+
+    'resources_require' => ['エンジニア', 'デザイナー', 'マーケター', '投資家', 'その他'],
+    
 ];

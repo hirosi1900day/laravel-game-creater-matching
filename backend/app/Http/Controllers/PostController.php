@@ -7,6 +7,8 @@ use App\Http\Requests\MyPostUpdate;
 use App\Post;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use App\Service\ImageService;
+use Illuminate\Support\Facades\Storage;
 
 class PostController extends Controller
 {
@@ -18,6 +20,7 @@ class PostController extends Controller
 
     public function create(StorePost $request)
     {
+        
         $post = new Post();
         $post->title = $request->title;
         $post->content = $request->content;
@@ -29,6 +32,24 @@ class PostController extends Controller
         // トランザクションを利用する
         DB::beginTransaction();
         try {
+            if($file = $request->file && $request->file != "null") {
+               
+                if(!$post->image_loccation){
+                    //新規登録
+                    //保存するファイルに名前をつける 
+                    $fileName = time().'.'.$request->file->getClientOriginalExtension();
+                    $path = Storage::disk('s3')->putFileAs("/postImage",$request->file, $fileName,'public');
+                    $post->image = $path;
+                } else {
+                    //アップデート
+                    //保存するファイルに名前をつける
+                    Storage::disk('s3')->delete($post->image);
+                    $fileName = time().'.'.$request->file->getClientOriginalExtension();
+                    $path = Storage::disk('s3')->putFileAs('/postImage',$request->file, $fileName,'public');
+                    $post->image = $path;
+                }
+               
+            }    
             Auth::user()->posts()->save($post);
             DB::commit();
         } catch (\Exception $exception) {
@@ -69,8 +90,31 @@ class PostController extends Controller
         
         DB::beginTransaction();
         try {
+            if($file = $request->file && $request->file != "null") {
+
+                if($post->image_loccation){
+                    //新規登録
+                    //保存するファイルに名前をつける 
+                    $fileName = time().'.'.$file->getClientOriginalExtension();
+                    $path = Storage::disk('s3')->putFileAs('/postImage',$request->file, $fileName,'public');
+                    $post->image = $path;
+                } else {
+                    
+                    //アップデート
+                    //保存するファイルに名前をつける
+                    Storage::disk('s3')->delete($post->image);
+                    $fileName = time().'.'.$request->file->getClientOriginalExtension();
+                    $path = Storage::disk('s3')->putFileAs('/postImage',$request->file, $fileName,'public');
+                    $post->image = $path;
+                }   
+            }
+           
+            $post->image = $path;
             $post->title = $request->title;
             $post->content = $request->content;
+            $post->resources_required = $request->resources_required;
+            $post->area = $request->area;
+            $post->qualification = $request->qualification;
             $post->save();
             DB::commit();
         } catch (\Exception $exception) {
@@ -85,6 +129,7 @@ class PostController extends Controller
         DB::beginTransaction();
         if($postUser->id == Auth::id()){
             try {
+                Storage::disk('s3')->delete($post->image);
                 $post->delete();
                 DB::commit();
                 return response(200);

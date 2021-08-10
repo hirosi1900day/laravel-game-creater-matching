@@ -11,11 +11,14 @@
 |
 */
 
-
+Route::get('test', function(){
+   return view('test');
+});
 
 //会員登録
 Route::get('signup', 'Auth\RegisterController@showRegistrationForm')->name('register');
 Route::post('signup', 'Auth\RegisterController@register')->name('signup');
+Route::post('register/main_register', 'Auth\RegisterController@mainRegister')->name('register.main.registered');
 //ログイン
 Route::get('login', 'Auth\LoginController@showLoginForm')->name('login.get');
 Route::post('login', 'Auth\LoginController@login')->name('login');

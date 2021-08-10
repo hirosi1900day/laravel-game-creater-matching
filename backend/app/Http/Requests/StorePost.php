@@ -13,7 +13,7 @@ class StorePost extends FormRequest
      */
     public function authorize()
     {
-        return true;
+        return true; 
     }
 
     /**
@@ -28,7 +28,19 @@ class StorePost extends FormRequest
             'content' => 'required',
             'resources_required' => 'required',
             'area' => 'required',
-            'qualification' => 'required'
+            'qualification' => 'required',
+            'file' => 'file|mimes:jpg,jpeg,png,gif|max:1048'
+        ];
+    }
+
+    public function message() {
+        return [
+            'title.required' => 'タイトルがみ入力です',
+            'content.required'  => '内容がみ入力です',
+            'resource_required' => '応募条件が未入力です',
+            'area.required' => 'エリアがみ入力です',
+            'qualification.required' => '応募資格がみ入力です',
+            'file.required' => '投稿画像がみ入力です'
         ];
     }
 }

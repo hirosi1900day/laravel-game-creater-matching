@@ -7,8 +7,10 @@ use App\Providers\RouteServiceProvider;
 use App\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Http\Request;
 use App\Mail\EmailVerification;
 
 class RegisterController extends Controller
@@ -93,13 +95,25 @@ class RegisterController extends Controller
                     return view('auth.main.register')->with('message', 'すでに本登録されています。ログインして利用してください。');
               }
               // ユーザーステータス更新
-              $user->status = config('const.USER_STATUS.MAIL_AUTHED');
-              $user->verify_at = Carbon::now();
+       
+              $user->status = config('Const.USER_STATUS.MAIL_AUTHED');
               if($user->save()) {
                   return view('auth.main.register', compact('email_token'));
               } else{
                   return view('auth.main.register')->with('message', 'メール認証に失敗しました。再度、メールからリンクをクリックしてください。');
               }
           }
+    }
+
+    public function mainRegister(Request $request)
+    {
+        $request->validate([
+            'name' => 'required|string',
+          ]);
+        $user = User::where('email_verify_token',$request->email_token)->first();
+        $user->status = config('Const.USER_STATUS.REGISTER');
+        $user->name = $request->name;
+        $user->save();
+        return view('auth.main.registered');
     }
 }

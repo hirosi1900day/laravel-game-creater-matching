@@ -48,7 +48,6 @@ class PostController extends Controller
                     $path = Storage::disk('s3')->putFileAs('/postImage',$request->file, $fileName,'public');
                     $post->image = $path;
                 }
-               
             }    
             Auth::user()->posts()->save($post);
             DB::commit();

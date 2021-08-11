@@ -56,6 +56,7 @@ export default {
         return false
       }
       this.post = response.data
+      console.log(`post確認${this.post}`)
       console.log('post確認')
       console.log(this.post.post.id)
     }

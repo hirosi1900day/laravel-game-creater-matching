@@ -1,10 +1,11 @@
 <template>
 
   <section class="text-gray-600 body-font overflow-hidden">
-   <div class="container px-5 py-24 mx-auto">
+   <div class="container px-5 py-24 mx-auto ">
+     <img class="object-cover h-48 md:h-64 lg:h-72 xl:h-80 2xl:h-86 w-full" :src="item.url">
      <div class=" -m-12">
        <div class="p-12  items-start">
-         <span class="inline-block py-1 px-2 rounded bg-indigo-50 text-indigo-500 text-xs font-medium tracking-widest">CATEGORY</span>
+         <span class="inline-block py-1 px-2 rounded bg-indigo-50 text-indigo-500 text-xs font-medium tracking-widest">{{item.resources_required}}</span>
          <!-- title -->
          <h2 class="sm:text-3xl text-2xl title-font font-medium text-gray-900 mt-4 mb-4">
           <div v-if="item.title.length<30">{{item.title}}</div>
@@ -40,7 +41,7 @@
            <img alt="blog" :src="item.user.url" class="w-12 h-12 rounded-full flex-shrink-0 object-cover object-center">
            <span class="flex-grow flex flex-col pl-4">
              <span class="title-font font-medium text-gray-900">{{item.user.name}}</span>
-             <span class="text-gray-400 text-xs tracking-widest mt-0.5">職業カテゴリー</span>
+             <span class="text-gray-400 text-xs tracking-widest mt-0.5">{{item.user.occupation}}</span>
            </span>
          </a>
          </div>
@@ -64,6 +65,11 @@ export default {
       required: true
     }
   },
+   method: {
+    test() {
+      console.log(this.props)
+    },
+   },
   computed: 
     mapGetters({
       authCheck: "auth/check"

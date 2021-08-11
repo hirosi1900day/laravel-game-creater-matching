@@ -64,7 +64,7 @@
         <div class="p-2 w-full">
           <div class="relative">
             <label for="occupation" class="leading-7 text-sm text-gray-600">職種</label>
-               <select name="occupation" id="occupation" v-model="myUserData.occupation">
+               <select name="occupation" id="occupation" v-model="myUserData.occupation" :options="myUserData.occupation" >
                <option v-for="(list ,index) in resourcesRequiredArray" :key="index" :value="list">
                    {{ list }}
                </option>
@@ -78,7 +78,7 @@
         </div>
         <div class="p-2 w-full">
           <button class="flex mx-auto text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg" @click="submit">Button</button>
-          <button @click="test">確認</button>
+          
         </div>
         <div class="p-2 w-full pt-8 mt-8 border-t border-gray-200 text-center">
           <a class="text-indigo-500"></a>

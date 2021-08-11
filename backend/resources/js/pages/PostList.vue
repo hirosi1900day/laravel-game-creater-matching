@@ -2,7 +2,7 @@
   <div class="photo-list">
     <div class="grid">
       <Post
-        class="grid__item"
+        class="bg-white mt-2"
         v-for="post in posts"
         :key="post.id"
         :item="post"
@@ -44,10 +44,23 @@ export default {
         return false
       }
       this.posts = response.data.data
-      console.log('確認') 
-      console.log(this.posts)
       this.currentPage = response.data.current_page
       this.lastPage = response.data.last_page
+    }
+  },
+
+  created: {
+    Loading() {
+      this.$store.commit('loading/setLoading', {
+      loading: true,
+      })
+    }
+  },
+  mounted: {
+    Loading() {
+      this.$store.commit('loading/setLoading', {
+      loading: false,
+      })
     }
   },
   watch: {

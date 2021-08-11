@@ -5,6 +5,7 @@
     </header>
     <main class="back-gray">
       <div class="container">
+        <Message />
         <RouterView />
       </div>
     </main>
@@ -14,10 +15,14 @@
 <script>
 import Navbar from './components/Navbar.vue'
 import { INTERNAL_SERVER_ERROR, NOT_AUTH } from './util'
+import Message from './components/Message.vue'
+import Loading from './components/Loader.vue'
 
 export default {
   components: {
-    Navbar
+    Navbar,
+    Message,
+    Loading
   },
   computed: {
     errorCode () {

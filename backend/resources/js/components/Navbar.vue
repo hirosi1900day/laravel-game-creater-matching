@@ -1,57 +1,39 @@
 
 <template>
-  <header style="margin: 40px"> 
-    <!-- ナビゲーションバー -->
-    <nav class="navbar fixed-top navbar-expand-xl navbar-light bg-color">
-      <div class="container-fluid">
+  
 
-        <!-- ホームリンク -->
-        <a href="/" class="navbar-brand" aria-label="ホーム">
-          <div>アイコン</div>
-        </a>
 
-        <!-- 画面幅が狭い時に表示されるハンバーガーメニュー -->
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar"
-          aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <!-- メニュー -->
-        <div class="collapse navbar-collapse" id="navbar">
-          <ul class="navbar-nav">
-            <li class="nav-item">
-              <RouterLink class="navbar__brand" :to="{name: 'PostIndex'}">
-                Home
-              </RouterLink>
-            </li>
-            <li class="nav-item">
-              <RouterLink class="navbar__brand" :to="{name: 'PostForm'}">
-                投稿
-              </RouterLink>
-            </li>
-            <li class="nav-item">
-              <RouterLink class="navbar__brand" :to="{name: 'Mypage'}">
-                マイページ
-               </RouterLink>
-            </li>
-            <li class="nav-item">
-              <RouterLink class="navbar__brand" :to="{name: 'ChatIndex'}">
-                chatUser一覧
-              </RouterLink>
-            </li>
-            <li class="nav-item">
-              <RouterLink class="navbar__brand" :to="{name: 'UserIndex'}">
-                User一覧
-              </RouterLink>
-            </li>  
-          </ul>
-        </div>
-        <!--/.nav-collapse -->
-      </div>
-      <!--/.container-fluid -->
+<header class="text-gray-600 body-font">
+  <div class="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
+    <a class="flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0">
+      <!-- <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-10 h-10 text-white p-2 bg-indigo-500 rounded-full" viewBox="0 0 24 24">
+        <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
+      </svg>
+      <span class="ml-3 text-xl">Tailblocks</span> -->
+      <div>HOME</div>
+    </a>
+    <nav class="md:ml-auto flex flex-wrap items-center text-base justify-center">
+      <RouterLink class="mr-5 hover:text-gray-900" :to="{name: 'PostIndex'}">
+         Home
+      </RouterLink>
+      <RouterLink class="mr-5 hover:text-gray-900" :to="{name: 'PostForm'}">
+        投稿
+      </RouterLink>
+      <RouterLink class="mr-5 hover:text-gray-900" :to="{name: 'Mypage'}">
+        マイページ
+      </RouterLink>
+      <RouterLink class="mr-5 hover:text-gray-900" :to="{name: 'ChatIndex'}">
+        chatUser一覧
+      </RouterLink>
+      <RouterLink class="mr-5 hover:text-gray-900" :to="{name: 'UserIndex'}">
+        User一覧
+      </RouterLink>
+      
+      
     </nav>
-
+  </div>
 </header>
+
 </template>
 
 

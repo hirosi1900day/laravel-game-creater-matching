@@ -2268,24 +2268,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 // $('.navbar-nav>li').on('click', function(){
 //       $('.navbar-collapse').collapse('hide');
 // });
@@ -41726,21 +41708,9 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    {
-      directives: [
-        {
-          name: "show",
-          rawName: "v-show",
-          value: _vm.message,
-          expression: "message"
-        }
-      ],
-      staticClass: "message"
-    },
-    [_vm._v("\n  " + _vm._s(_vm.message) + "\n")]
-  )
+  return _c("div", { staticClass: "message" }, [
+    _vm._v("\n  " + _vm._s(_vm.message) + "\n")
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -41809,109 +41779,70 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("header", { staticStyle: { margin: "40px" } }, [
+  return _c("header", { staticClass: "text-gray-600 body-font" }, [
     _c(
-      "nav",
+      "div",
       {
-        staticClass: "navbar fixed-top navbar-expand-xl navbar-light bg-color"
+        staticClass:
+          "container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center"
       },
       [
-        _c("div", { staticClass: "container-fluid" }, [
-          _vm._m(0),
-          _vm._v(" "),
-          _vm._m(1),
-          _vm._v(" "),
-          _c(
-            "div",
-            {
-              staticClass: "collapse navbar-collapse",
-              attrs: { id: "navbar" }
-            },
-            [
-              _c("ul", { staticClass: "navbar-nav" }, [
-                _c(
-                  "li",
-                  { staticClass: "nav-item" },
-                  [
-                    _c(
-                      "RouterLink",
-                      {
-                        staticClass: "navbar__brand",
-                        attrs: { to: { name: "PostIndex" } }
-                      },
-                      [_vm._v("\n                Home\n              ")]
-                    )
-                  ],
-                  1
-                ),
-                _vm._v(" "),
-                _c(
-                  "li",
-                  { staticClass: "nav-item" },
-                  [
-                    _c(
-                      "RouterLink",
-                      {
-                        staticClass: "navbar__brand",
-                        attrs: { to: { name: "PostForm" } }
-                      },
-                      [_vm._v("\n                投稿\n              ")]
-                    )
-                  ],
-                  1
-                ),
-                _vm._v(" "),
-                _c(
-                  "li",
-                  { staticClass: "nav-item" },
-                  [
-                    _c(
-                      "RouterLink",
-                      {
-                        staticClass: "navbar__brand",
-                        attrs: { to: { name: "Mypage" } }
-                      },
-                      [_vm._v("\n                マイページ\n               ")]
-                    )
-                  ],
-                  1
-                ),
-                _vm._v(" "),
-                _c(
-                  "li",
-                  { staticClass: "nav-item" },
-                  [
-                    _c(
-                      "RouterLink",
-                      {
-                        staticClass: "navbar__brand",
-                        attrs: { to: { name: "ChatIndex" } }
-                      },
-                      [_vm._v("\n                chatUser一覧\n              ")]
-                    )
-                  ],
-                  1
-                ),
-                _vm._v(" "),
-                _c(
-                  "li",
-                  { staticClass: "nav-item" },
-                  [
-                    _c(
-                      "RouterLink",
-                      {
-                        staticClass: "navbar__brand",
-                        attrs: { to: { name: "UserIndex" } }
-                      },
-                      [_vm._v("\n                User一覧\n              ")]
-                    )
-                  ],
-                  1
-                )
-              ])
-            ]
-          )
-        ])
+        _vm._m(0),
+        _vm._v(" "),
+        _c(
+          "nav",
+          {
+            staticClass:
+              "md:ml-auto flex flex-wrap items-center text-base justify-center"
+          },
+          [
+            _c(
+              "RouterLink",
+              {
+                staticClass: "mr-5 hover:text-gray-900",
+                attrs: { to: { name: "PostIndex" } }
+              },
+              [_vm._v("\n         Home\n      ")]
+            ),
+            _vm._v(" "),
+            _c(
+              "RouterLink",
+              {
+                staticClass: "mr-5 hover:text-gray-900",
+                attrs: { to: { name: "PostForm" } }
+              },
+              [_vm._v("\n        投稿\n      ")]
+            ),
+            _vm._v(" "),
+            _c(
+              "RouterLink",
+              {
+                staticClass: "mr-5 hover:text-gray-900",
+                attrs: { to: { name: "Mypage" } }
+              },
+              [_vm._v("\n        マイページ\n      ")]
+            ),
+            _vm._v(" "),
+            _c(
+              "RouterLink",
+              {
+                staticClass: "mr-5 hover:text-gray-900",
+                attrs: { to: { name: "ChatIndex" } }
+              },
+              [_vm._v("\n        chatUser一覧\n      ")]
+            ),
+            _vm._v(" "),
+            _c(
+              "RouterLink",
+              {
+                staticClass: "mr-5 hover:text-gray-900",
+                attrs: { to: { name: "UserIndex" } }
+              },
+              [_vm._v("\n        User一覧\n      ")]
+            )
+          ],
+          1
+        )
       ]
     )
   ])
@@ -41924,30 +41855,10 @@ var staticRenderFns = [
     return _c(
       "a",
       {
-        staticClass: "navbar-brand",
-        attrs: { href: "/", "aria-label": "ホーム" }
+        staticClass:
+          "flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0"
       },
-      [_c("div", [_vm._v("アイコン")])]
-    )
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "button",
-      {
-        staticClass: "navbar-toggler",
-        attrs: {
-          type: "button",
-          "data-toggle": "collapse",
-          "data-target": "#navbar",
-          "aria-controls": "navbar",
-          "aria-expanded": "false",
-          "aria-label": "Toggle navigation"
-        }
-      },
-      [_c("span", { staticClass: "navbar-toggler-icon" })]
+      [_c("div", [_vm._v("HOME")])]
     )
   }
 ]
@@ -62605,7 +62516,6 @@ var mutations = {
       timeout = 3000;
     }
 
-    console.log("message\u306E\u5185\u5BB9\u5BB6\u8A13".concat(this.state.content, " "));
     setTimeout(function () {
       state.content = '';
     });

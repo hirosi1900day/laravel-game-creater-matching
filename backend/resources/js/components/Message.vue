@@ -1,5 +1,5 @@
 <template>
-  <div class="message" v-show="message">
+  <div class="message">
     {{ message }}
   </div>
 </template>
@@ -8,10 +8,11 @@
   import { mapState } from 'vuex'
 
   export default {
+  
     computed: {
       ...mapState({
         message: state => state.message.content
-      })
+      }),
     }
   }
 </script>

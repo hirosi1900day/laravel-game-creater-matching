@@ -9,8 +9,6 @@ const state = {
      if(typeof timeout == 'undefined') {
         timeout = 3000
      }
-
-     console.log(`messageの内容家訓${this.state.content} `)
      
      setTimeout(() => {
         state.content = ''
